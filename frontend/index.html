@@ -1,0 +1,1125 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>سبيلفر | Spilver Café</title>
+<meta name="description" content="سبيلفر، كافيه في جدة بدأ بخمسة إخوة جمعتهم القهوة. قهوة مختصة، مخبوزات، وفرعين في جدة.">
+<meta name="theme-color" content="#251A14">
+<!-- DEPLOY STEP: replace og:url and og:image with absolute live URLs -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="سبيلفر | Spilver Café">
+<meta property="og:description" content="خمسة إخوة، جمعتهم القهوة وصنعوا منها حكاية.">
+<meta property="og:url" content="https://example.com/">
+<meta property="og:image" content="https://example.com/assets/og.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23251A14'/%3E%3Cpath d='M32 10c7 11 13 18 13 26a13 13 0 0 1-26 0c0-8 6-15 13-26z' fill='%23CDD2D9'/%3E%3Cpath d='M26 38a6 6 0 0 0 6 6' stroke='%23251A14' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Marcellus&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#251A14;
+  --canvas-deep:#1C140F;
+  --panel:#30231B;
+  --panel-2:#3A2B21;
+  --accent:#CDD2D9;
+  --accent-hover:#E9ECF0;
+  --accent-muted:rgba(205,210,217,.18);
+  --crema:#C9955E;
+  --text-primary:#F3EADF;
+  --text-secondary:#C4B3A1;
+  --on-accent:#231811;
+  --line:rgba(205,210,217,.14);
+  --line-strong:rgba(205,210,217,.46);
+  --scrim-rgb:14,9,6;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --ease-soft:cubic-bezier(.45,.05,.25,1);
+  --tshadow:0 1px 2px rgba(14,9,6,.95),0 3px 12px rgba(14,9,6,.78),0 10px 44px rgba(14,9,6,.8);
+  --f-body:'IBM Plex Sans Arabic',system-ui,sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,monospace;
+  --f-display:'Reem Kufi','IBM Plex Sans Arabic',sans-serif;
+  --gut:clamp(16px,5vw,72px);
+  --maxw:1240px;
+}
+html[lang=en]{--f-display:'Marcellus',Georgia,serif}
+html[lang=ar] body [lang=en],html[lang=en] body [lang=ar]{display:none!important}
+
+*,*::before,*::after{box-sizing:border-box}
+html{overflow-x:hidden;overflow-x:clip;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;overflow-x:hidden;overflow-x:clip;background:var(--canvas);color:var(--text-primary);font-family:var(--f-body);font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased;animation:pageIn .9s var(--ease-soft) both}
+@keyframes pageIn{from{opacity:0}to{opacity:1}}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.sr{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:fixed;inset-inline-start:16px;top:-60px;z-index:100;background:var(--accent);color:var(--on-accent);padding:10px 16px;border-radius:10px;text-decoration:none;transition:top .3s var(--ease-out)}
+.skip:focus{top:12px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.num,.price{font-family:var(--f-mono);direction:ltr;unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+
+/* ---------- the environment layer ---------- */
+.env{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:var(--canvas)}
+.env .glow{position:absolute;width:70vmax;height:70vmax;border-radius:50%;filter:blur(40px);opacity:.55;will-change:transform}
+.env .g1{background:radial-gradient(circle,rgba(201,149,94,.16),rgba(201,149,94,0) 62%);top:-20vmax;inset-inline-start:-18vmax;animation:drift1 96s var(--ease-soft) infinite alternate;animation-delay:-30s}
+.env .g2{background:radial-gradient(circle,rgba(205,210,217,.07),rgba(205,210,217,0) 60%);bottom:-26vmax;inset-inline-end:-20vmax;animation:drift2 120s var(--ease-soft) infinite alternate;animation-delay:-50s}
+@keyframes drift1{to{transform:translate(18vmax,22vmax)}}
+@keyframes drift2{to{transform:translate(-16vmax,-18vmax)}}
+.env .grain{position:absolute;inset:-50%;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .95 0 0 0 0 .9 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+body.paused *,body.paused *::before,body.paused *::after{animation-play-state:paused!important}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset-inline:0;top:0;z-index:50;display:flex;align-items:center;gap:28px;padding:18px var(--gut);transition:background-color .6s var(--ease-soft),padding .6s var(--ease-out),box-shadow .6s var(--ease-soft)}
+.nav::before{content:"";position:absolute;inset:0 0 -56px;z-index:-1;pointer-events:none;background:linear-gradient(to bottom,rgba(var(--scrim-rgb),.82),rgba(var(--scrim-rgb),.5) 50%,rgba(var(--scrim-rgb),0));transition:opacity .6s var(--ease-soft)}
+.nav.solid::before{opacity:0}
+.nav ul a,.lang{text-shadow:0 1px 3px rgba(14,9,6,.95),0 2px 14px rgba(14,9,6,.8)}
+.nav.solid{background:rgba(37,26,20,.84);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding-block:12px;box-shadow:0 1px 0 var(--line)}
+.brand{display:flex;align-items:center;text-decoration:none;margin-inline-end:auto}
+.brand img{height:34px;width:auto;transition:height .6s var(--ease-out)}
+.nav.solid .brand img{height:28px}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;font-size:15px;color:rgba(243,234,223,.88);position:relative;padding-block:6px;transition:color .35s var(--ease-soft)}
+.nav ul a::after{content:"";position:absolute;inset-inline:0;bottom:0;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:var(--origin-start,right);transition:transform .45s var(--ease-out)}
+html[dir=ltr]{--origin-start:left}
+.nav ul a:hover{color:var(--text-primary)}
+.nav ul a:hover::after{transform:scaleX(1)}
+.lang{background:none;border:1px solid var(--line-strong);border-radius:999px;min-width:44px;height:36px;padding:0 12px;cursor:pointer;font-size:14px;transition:border-color .35s var(--ease-soft),background-color .35s var(--ease-soft)}
+.lang:hover{border-color:var(--accent);background:var(--accent-muted)}
+.lang [lang=ar]{font-family:var(--f-body)}
+.lang [lang=en]{font-family:var(--f-mono);letter-spacing:.08em}
+.menu-btn{display:none;background:none;border:1px solid var(--line-strong);border-radius:999px;width:40px;height:36px;cursor:pointer;padding:0;align-items:center;justify-content:center}
+.menu-btn span{display:block;width:16px;height:1.5px;background:var(--text-primary);box-shadow:0 5px 0 var(--text-primary),0 -5px 0 var(--text-primary)}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;border-radius:999px;padding:12px 24px;font-weight:500;font-size:16px;line-height:1.2;cursor:pointer;border:1px solid transparent;text-shadow:none;transition:background-color .4s var(--ease-soft),color .4s var(--ease-soft),border-color .4s var(--ease-soft),transform .5s var(--ease-out)}
+.btn-accent{background:var(--accent);color:var(--on-accent)}
+.btn-accent:hover{background:var(--accent-hover);transform:translateY(-2px)}
+.btn-ghost{border-color:var(--line-strong);color:var(--text-primary);background:rgba(var(--scrim-rgb),.25)}
+.btn-ghost:hover{border-color:var(--accent);background:var(--accent-muted);transform:translateY(-2px)}
+.btn .arrow{display:inline-block;transition:transform .5s var(--ease-out)}
+html[dir=rtl] .btn .arrow{transform:scaleX(-1)}
+.btn:hover .arrow{transform:translateX(4px)}
+html[dir=rtl] .btn:hover .arrow{transform:scaleX(-1) translateX(4px)}
+.nav .btn{padding:9px 20px;font-size:15px}
+@media (pointer:coarse){.btn,.lang,.menu-btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:500vh;background:var(--canvas-deep)}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#1a120d}
+.poster,.static-bg,.stage video{position:absolute;inset:0;width:100%;height:100%}
+.poster{background:center/cover no-repeat}
+.static-bg{display:none;background:center 62%/cover no-repeat}
+.stage video{object-fit:cover;opacity:0;transition:opacity .9s var(--ease-soft);will-change:transform;transform:translateZ(0)}
+.stage.video-ready video{opacity:1}
+.stage.video-failed video{display:none}
+/* without the video, the still journey still ends on the full glass */
+.poster-end{position:absolute;inset:0;background:center/cover no-repeat;display:none;opacity:var(--pe,0)}
+.stage.video-failed .poster-end{display:block}
+.scrim{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 120% 90% at 50% 48%,rgba(var(--scrim-rgb),0) 40%,rgba(var(--scrim-rgb),.62) 100%),linear-gradient(to bottom,rgba(var(--scrim-rgb),.5),rgba(var(--scrim-rgb),0) 20%)}
+
+.band{position:absolute;top:50%;opacity:0;visibility:hidden;pointer-events:none;isolation:isolate;width:min(31vw,460px);text-shadow:var(--tshadow);transform:translateY(-50%)}
+.band.on{pointer-events:auto}
+/* the gradient ends inside its own box (closest-side), so no edge is ever visible */
+.band::before{content:"";position:absolute;inset:-75% -52%;z-index:-1;pointer-events:none;opacity:calc(.8 + .2*var(--k,1));background:radial-gradient(closest-side,rgba(var(--scrim-rgb),var(--sa,.8)) 0%,rgba(var(--scrim-rgb),calc(var(--sa,.8)*.92)) 46%,rgba(var(--scrim-rgb),calc(var(--sa,.8)*.5)) 72%,rgba(var(--scrim-rgb),0) 100%)}
+/* positions follow the footage, not the reading direction: streams run down the center, the glass lands center-bottom, the left third stays calm at the end */
+.b1{right:5vw;top:56%;--sa:.84}
+.b2{left:5vw;top:57%;--sa:.92}
+.b3{left:4vw;top:61%;width:min(28vw,440px);--sa:.94}
+.band .line{font-family:var(--f-display);font-weight:500;font-size:clamp(2rem,3.4vw,3.5rem);line-height:1.35;margin:0;text-wrap:balance}
+html[lang=ar] .band .line,html[lang=ar] .b3 h1{word-spacing:.14em}
+html[lang=en] .band .line{font-weight:400;line-height:1.18}
+.band .w{display:inline-block;padding-block:.12em;margin-block:-.12em;will-change:transform}
+.band .kick{display:inline-flex;align-items:center;gap:10px;font-size:14px;color:var(--text-secondary);margin-bottom:14px}
+html[lang=en] .band .kick{font-family:var(--f-mono);letter-spacing:.14em;text-transform:uppercase;font-size:12px}
+.drop{display:inline-block;width:8px;height:11px;background:var(--accent);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;clip-path:polygon(50% 0,100% 62%,92% 84%,74% 97%,50% 100%,26% 97%,8% 84%,0 62%)}
+
+/* b1: drift-down, words fall like drops */
+.b1 .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*2.8,1);opacity:var(--kc);transform:translateY(calc((1 - var(--kc))*-30px))}
+/* b2: drip, each word drops in with a short vertical stretch */
+.b2 .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*2.6,1);opacity:var(--kc);transform-origin:50% 0;transform:translateY(calc((1 - var(--kc))*-44px)) scaleY(calc(1 + (1 - var(--kc))*.4))}
+/* b3: word rise into a staged settle */
+.b3 h1{font-family:var(--f-display);font-weight:700;font-size:clamp(3.4rem,7vw,7.2rem);line-height:1.1;margin:0 0 .15em;color:var(--text-primary)}
+html[lang=en] .b3 h1{font-weight:400;letter-spacing:.04em;font-size:clamp(3rem,5.4vw,5.8rem)}
+.b3 h1 .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*3,1);opacity:var(--kc);transform:translateY(calc((1 - var(--kc))*34px))}
+.b3 .sub{--ks:clamp(0,(var(--k,0) - .5)*4,1);opacity:var(--ks);transform:translateY(calc((1 - var(--ks))*14px));font-size:clamp(1.05rem,1.35vw,1.3rem);line-height:1.8;color:var(--text-primary);margin:0 0 26px;max-width:30ch}
+.b3 .cta{--kb:clamp(0,(var(--k,0) - .7)*4,1);opacity:var(--kb);transform:translateY(calc((1 - var(--kb))*14px));display:flex;flex-wrap:wrap;gap:12px}
+
+.cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:13px;color:var(--text-secondary);text-shadow:var(--tshadow);transition:opacity .6s var(--ease-soft)}
+.cue.gone{opacity:0}
+.ring{width:40px;height:40px;color:var(--accent);transform:rotate(-90deg)}
+.ring .track{stroke:rgba(205,210,217,.2)}
+.chev{width:22px;height:34px;border:1.5px solid var(--line-strong);border-radius:12px;position:relative;display:none}
+.chev::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--accent);animation:chev 2.4s var(--ease-soft) infinite;animation-delay:-.6s}
+@keyframes chev{0%{transform:translateY(0);opacity:0}30%{opacity:1}80%{transform:translateY(10px);opacity:0}100%{opacity:0}}
+.cue.ready .ring{display:none}
+.cue.ready .chev{display:block}
+
+/* ---------- static hero gates (must match JS GATES exactly) ---------- */
+@media (max-width: 720px),(orientation: portrait) and (max-width: 1024px),(orientation: portrait) and (pointer: coarse),(orientation: landscape) and (pointer: coarse) and (max-height: 560px),(prefers-reduced-motion: reduce){
+  .hero{height:auto}
+  .stage{position:relative;height:100svh;min-height:520px}
+  .stage video,.poster,.poster-end,.b1,.b2,.cue{display:none!important}
+  .static-bg{display:block;background-image:url(assets/hero-ending.jpg);background-position:center}
+  .b3{--k:1!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important}
+  @media (max-height: 560px){.b3 h1{font-size:2.8rem}.b3 .sub{font-size:1rem;margin-bottom:14px}}
+  /* portrait: the ending frame on top, the words below it on the canvas */
+  @media (orientation: portrait){
+    .stage{height:auto;min-height:100svh;display:flex;flex-direction:column;padding-bottom:max(44px,6svh)}
+    .static-bg{position:relative;inset:auto;flex:none;height:64svh;background-image:url(assets/hero-ending-m.jpg);background-position:center 78%;-webkit-mask-image:linear-gradient(to bottom,#000 72%,transparent);mask-image:linear-gradient(to bottom,#000 72%,transparent)}
+    .scrim{background:linear-gradient(to bottom,rgba(var(--scrim-rgb),.6),rgba(var(--scrim-rgb),0) 18%)}
+    .b3{position:relative;top:auto;left:auto;transform:none;width:auto;margin-top:-4svh;padding-inline:var(--gut);text-align:center}
+    .b3::before{display:none}
+    .b3 .sub{margin-inline:auto}
+    .b3 .cta{justify-content:center}
+  }
+}
+
+/* ---------- sections ---------- */
+main{position:relative;display:block}
+section{position:relative}
+.wrap{width:min(var(--maxw),100% - 2*var(--gut));margin-inline:auto}
+.sec{padding-block:clamp(88px,13vw,168px)}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:500;color:var(--accent);margin:0 0 18px}
+html[lang=en] .kicker{font-family:var(--f-mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:400}
+.h2{font-family:var(--f-display);font-weight:500;font-size:clamp(2.1rem,4.4vw,3.8rem);line-height:1.3;margin:0 0 20px;max-width:18ch}
+html[lang=en] .h2{font-weight:400;line-height:1.14}
+.lede{font-size:clamp(1.02rem,1.3vw,1.18rem);color:var(--text-secondary);max-width:46ch;margin:0}
+
+/* entrances */
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease-soft),transform 1.1s var(--ease-out);transition-delay:calc(var(--i,0)*110ms)}
+.in .rv,.rv.in{opacity:1;transform:none}
+.done .rv,.rv.done{transition-delay:0s!important}
+
+/* self-drawing divider */
+.divider{display:flex;align-items:center;gap:14px;width:min(var(--maxw),100% - 2*var(--gut));margin:0 auto}
+.divider .ln{flex:1;height:1px;background:linear-gradient(to var(--to-end,left),var(--line-strong),transparent);transform:scaleX(0);transform-origin:var(--origin-start,right);transition:transform 1.6s var(--ease-out)}
+html[dir=ltr]{--to-end:right}
+.divider.in .ln{transform:scaleX(1)}
+.divider .drop{opacity:0;transform:translateY(-14px);transition:opacity .8s var(--ease-soft) .5s,transform 1s var(--ease-out) .5s}
+.divider.in .drop{opacity:1;transform:none}
+
+/* ---------- S1 story ---------- */
+.story .grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,7vw,110px);align-items:center}
+.pour-card{position:relative;background:linear-gradient(180deg,var(--panel),rgba(48,35,27,.4));border:1px solid var(--line);border-radius:28px;padding:34px 28px 30px;display:flex;flex-direction:column;align-items:center}
+.pour-svg{width:min(100%,340px);height:auto;overflow:visible}
+.pour-svg .spout{fill:var(--accent)}
+.pour-svg .guide{fill:none;stroke:rgba(205,210,217,.16);stroke-width:1.2;stroke-dasharray:2 7;stroke-linecap:round;transition:opacity .8s var(--ease-soft)}
+.poured .pour-svg .guide{opacity:0}
+.pour-svg .stream{fill:none;stroke:var(--accent);stroke-width:2.6;stroke-linecap:round;stroke-dasharray:1 1;stroke-dashoffset:calc(1 - var(--s,0))}
+.poured .pour-svg .stream{transition:stroke-dashoffset 1.1s var(--ease-soft);stroke-dashoffset:-1}
+.pour-svg .glass{fill:rgba(205,210,217,.05);stroke:var(--line-strong);stroke-width:1.6}
+.pour-svg .fill{transform:translateY(calc((1 - var(--lvl,0))*138px))}
+.pour-svg .steam path{fill:none;stroke:rgba(243,234,223,.35);stroke-width:1.6;stroke-linecap:round;opacity:0}
+.poured.live .pour-svg .steam path{animation:steam 5.5s var(--ease-soft) infinite}
+.poured .pour-svg .steam path:nth-child(2){animation-delay:-2.7s}
+@keyframes steam{0%{opacity:0;transform:translateY(8px)}40%{opacity:.9}100%{opacity:0;transform:translateY(-18px)}}
+.hold{position:relative;margin-top:22px;display:inline-flex;align-items:center;gap:14px;background:none;border:1px solid var(--line-strong);border-radius:999px;padding:8px 22px 8px 8px;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:none;transition:border-color .4s var(--ease-soft),background-color .4s var(--ease-soft)}
+html[dir=rtl] .hold{padding:8px 8px 8px 22px}
+.hold:hover{border-color:var(--accent);background:var(--accent-muted)}
+.hold svg{width:46px;height:46px;transform:rotate(-90deg);flex:none}
+.hold .hr-track{stroke:rgba(205,210,217,.2)}
+.hold .hr-fill{stroke:var(--accent);stroke-dasharray:132;stroke-dashoffset:calc(132 - 132*var(--hp,0))}
+.hold .dot{fill:var(--accent)}
+.hold .lbl-done{display:none}
+.poured .hold{border-color:var(--accent);cursor:default}
+.poured .hold .lbl-idle{display:none}
+.poured .hold .lbl-done{display:inline}
+.five{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;margin:22px 0 0;padding:0;font-size:15px;color:var(--text-secondary)}
+.five li{opacity:.28;transition:opacity .8s var(--ease-soft),color .8s var(--ease-soft);transition-delay:calc(var(--i)*180ms + 300ms)}
+.poured .five li{opacity:1;color:var(--accent)}
+.story-text p{margin:0 0 18px;max-width:52ch}
+.story-text p.first{font-size:clamp(1.15rem,1.6vw,1.4rem);color:var(--text-primary)}
+.story-text p.rest{color:var(--text-secondary)}
+.seal{margin-top:28px;padding:18px 22px;border-inline-start:2px solid var(--accent);background:linear-gradient(to var(--to-end,left),var(--accent-muted),transparent);opacity:0;transform:translateY(12px);transition:opacity 1s var(--ease-soft) 1.4s,transform 1.1s var(--ease-out) 1.4s;font-family:var(--f-display);font-size:clamp(1.1rem,1.5vw,1.35rem);line-height:1.6}
+.story.poured .seal{opacity:1;transform:none}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:clamp(64px,9vw,110px);border-top:1px solid var(--line)}
+.stat{padding:28px 8px 0;border-inline-start:1px solid var(--line);padding-inline-start:24px}
+.stat:first-child{border-inline-start:0;padding-inline-start:0}
+.stat .num{display:block;font-size:clamp(2.6rem,5vw,4.2rem);line-height:1;color:var(--accent);font-weight:400}
+html[dir=rtl] .stat .num{text-align:right}
+.stat .lb{display:block;margin-top:10px;color:var(--text-secondary);font-size:15px}
+
+/* ---------- S2 most loved ---------- */
+.loved .head{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap;margin-bottom:clamp(40px,6vw,72px)}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,2vw,26px)}
+.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;transition:transform .7s var(--ease-out),border-color .5s var(--ease-soft)}
+.cards .card:nth-child(even){margin-top:56px}
+.card:hover{transform:translateY(-6px);border-color:var(--line-strong)}
+.card .ph{aspect-ratio:4/5;overflow:hidden;background:var(--panel-2)}
+.card .ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.4s var(--ease-out)}
+.card:hover .ph img{transform:scale(1.09)}
+.card .bd{padding:20px 20px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card .no{font-family:var(--f-mono);font-size:12px;color:var(--text-secondary);letter-spacing:.14em}
+.card h3{font-family:var(--f-display);font-weight:500;font-size:1.35rem;line-height:1.35;margin:0}
+html[lang=en] .card h3{font-weight:400}
+.card p{margin:0;color:var(--text-secondary);font-size:15px;line-height:1.7;flex:1}
+.card .price{align-self:flex-start;margin-top:6px;padding:4px 12px;border:1px solid var(--line-strong);border-radius:999px;font-size:14px;color:var(--accent)}
+
+/* ---------- S3 menu ---------- */
+.menu-sec{background:linear-gradient(180deg,transparent,rgba(28,20,15,.55) 18%,rgba(28,20,15,.55) 82%,transparent)}
+.menu-sec .head{text-align:center;margin-bottom:clamp(44px,6vw,80px)}
+.menu-sec .h2{margin-inline:auto}
+.boards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2.4vw,30px)}
+.board{background:linear-gradient(160deg,var(--panel),rgba(48,35,27,.55));border:1px solid var(--line);border-radius:24px;padding:clamp(24px,3vw,38px)}
+.board-head{display:flex;align-items:center;gap:16px;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.board-head svg{width:44px;height:44px;flex:none}
+.board-head h3{font-family:var(--f-display);font-weight:500;font-size:1.55rem;margin:0;flex:1}
+html[lang=en] .board-head h3{font-weight:400}
+.board-head .count{font-family:var(--f-mono);font-size:12px;color:var(--text-secondary);letter-spacing:.12em}
+.icon path,.icon line,.icon circle,.icon rect{fill:none;stroke:var(--accent);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.8s var(--ease-out) .2s}
+.in .icon path,.in .icon line,.in .icon circle,.in .icon rect{stroke-dashoffset:0}
+.items{list-style:none;margin:0;padding:0}
+.items li{display:flex;align-items:baseline;gap:12px;padding:11px 0;opacity:0;transform:translateY(10px);transition:opacity .8s var(--ease-soft),transform .9s var(--ease-out);transition-delay:calc(var(--i,0)*90ms + 250ms)}
+.in .items li{opacity:1;transform:none}
+.done .items li{transition-delay:0s!important}
+.items .nm{font-size:16.5px}
+.items .dots{flex:1;height:1px;border-bottom:1px dotted rgba(205,210,217,.34);transform:scaleX(0);transform-origin:var(--origin-start,right);transition:transform 1.2s var(--ease-out);transition-delay:calc(var(--i,0)*90ms + 450ms)}
+.in .items .dots{transform:scaleX(1)}
+.items .price{font-size:15px;color:var(--accent)}
+.items li:hover .nm{color:var(--accent)}
+.board.live .icon .steam-i{animation:steam 5s var(--ease-soft) infinite;animation-delay:-1.4s}
+
+/* ---------- S4 atmosphere ---------- */
+.atmo .head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:end;margin-bottom:clamp(40px,5vw,64px)}
+.mosaic{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:clamp(150px,17vw,240px);gap:clamp(10px,1.4vw,18px)}
+.tile{position:relative;overflow:hidden;border-radius:20px;background:var(--panel-2);margin:0}
+.tile img{width:100%;height:100%;object-fit:cover}
+.tile:nth-child(1){grid-column:1/span 7;grid-row:span 2}
+.tile:nth-child(2){grid-column:8/span 5}
+.tile:nth-child(3){grid-column:8/span 5}
+.tile:nth-child(4){grid-column:1/span 12;grid-row:span 2}
+.tile figcaption{position:absolute;inset-inline-start:14px;bottom:14px;font-size:13.5px;padding:6px 14px;border-radius:999px;background:rgba(var(--scrim-rgb),.6);border:1px solid rgba(205,210,217,.22);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.tile.live img{animation:kb 26s var(--ease-soft) infinite alternate;animation-delay:-8s}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.09)}}
+
+/* ---------- S5 faq ---------- */
+.faq .wrap{width:min(820px,100% - 2*var(--gut))}
+.faq .head{margin-bottom:34px}
+.qa{border-top:1px solid var(--line)}
+.qa:last-child{border-bottom:1px solid var(--line)}
+.qa button{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:18px;width:100%;padding:22px 0;cursor:pointer;font-size:clamp(1.05rem,1.4vw,1.2rem);font-weight:500}
+.qa button:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.qa .q{flex:1}
+.qa .pm{position:relative;width:18px;height:18px;flex:none}
+.qa .pm::before,.qa .pm::after{content:"";position:absolute;left:0;right:0;top:50%;height:1.5px;background:var(--accent);transition:transform .5s var(--ease-out)}
+.qa .pm::after{transform:rotate(90deg)}
+.qa.open .pm::after{transform:rotate(0)}
+.qa .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease-out)}
+.qa.open .a{grid-template-rows:1fr}
+.qa .a>div{overflow:hidden}
+.qa .a p{margin:0;padding:0 0 24px;color:var(--text-secondary);max-width:60ch;opacity:0;transition:opacity .5s var(--ease-soft)}
+.qa.open .a p{opacity:1;transition-delay:.12s}
+
+/* ---------- S6 branches (CTA) ---------- */
+.visit{text-align:center}
+.visit .h2{margin-inline:auto;font-size:clamp(2.6rem,6vw,5.2rem);max-width:none}
+.visit .lede{margin:0 auto clamp(44px,6vw,72px)}
+.branches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2.4vw,30px);text-align:start}
+.branch{background:var(--panel);border:1px solid var(--line);border-radius:26px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .5s var(--ease-soft),transform .7s var(--ease-out)}
+.branch:hover{border-color:var(--line-strong);transform:translateY(-4px)}
+.branch .ph{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--panel-2)}
+.branch .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.6s var(--ease-out)}
+.branch:hover .ph img{transform:scale(1.05)}
+.branch .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(var(--scrim-rgb),.8),rgba(var(--scrim-rgb),0) 55%)}
+.branch .ph h3{position:absolute;z-index:1;inset-inline-start:24px;bottom:18px;margin:0;font-family:var(--f-display);font-weight:500;font-size:clamp(1.6rem,2.6vw,2.2rem);text-shadow:var(--tshadow)}
+html[lang=en] .branch .ph h3{font-weight:400}
+.branch .bd{padding:24px;display:flex;flex-direction:column;gap:14px;flex:1}
+.branch .row{display:flex;gap:12px;align-items:baseline;color:var(--text-secondary);font-size:15.5px}
+.branch .row svg{width:18px;height:18px;flex:none;position:relative;top:3px}
+.branch .row svg *{fill:none;stroke:var(--accent);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 0;padding:0;list-style:none}
+.tags li{font-size:13.5px;padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--text-primary)}
+.branch .btn{align-self:flex-start;margin-top:auto}
+.pin-pulse{position:relative}
+.branch.live .pin-pulse::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--accent);animation:pulse 4.5s var(--ease-soft) infinite;animation-delay:-1s}
+@keyframes pulse{0%{opacity:.7;transform:scale(.6)}70%{opacity:0;transform:scale(1.5)}100%{opacity:0}}
+
+/* ---------- S7 join ---------- */
+.join{position:relative;overflow:hidden;border-radius:32px;margin-inline:auto;width:min(var(--maxw),100% - 2*var(--gut));min-height:420px;display:flex;align-items:center;isolation:isolate}
+.join .bg{position:absolute;inset:0;inset-inline-start:34%;z-index:-2;background:var(--panel-2) center 40%/cover no-repeat;-webkit-mask-image:linear-gradient(to right,transparent,#000 30%);mask-image:linear-gradient(to right,transparent,#000 30%)}
+html[dir=rtl] .join .bg{-webkit-mask-image:linear-gradient(to left,transparent,#000 30%);mask-image:linear-gradient(to left,transparent,#000 30%)}
+.join{background:var(--panel)}
+.join::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to var(--to-end,left),rgba(var(--scrim-rgb),.9) 0%,rgba(var(--scrim-rgb),.72) 45%,rgba(var(--scrim-rgb),.2) 100%)}
+.join .in-wrap{padding:clamp(34px,6vw,80px);max-width:640px}
+.join .h2{max-width:16ch}
+.join .lede{color:var(--text-primary);opacity:.86;margin-bottom:30px}
+
+/* dialog */
+dialog.apply{border:1px solid var(--line-strong);border-radius:26px;background:var(--panel);color:var(--text-primary);padding:0;width:min(560px,100% - 32px);max-height:calc(100svh - 32px);overflow:auto}
+dialog.apply::backdrop{background:rgba(14,9,6,.72);backdrop-filter:blur(6px)}
+dialog.apply[open]{animation:dlg .5s var(--ease-out)}
+@keyframes dlg{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+.apply .dh{display:flex;justify-content:space-between;align-items:center;padding:24px 26px 0}
+.apply .dh h2{font-family:var(--f-display);font-weight:500;font-size:1.7rem;margin:0}
+html[lang=en] .apply .dh h2{font-weight:400}
+.apply .x{background:none;border:1px solid var(--line-strong);border-radius:50%;width:40px;height:40px;cursor:pointer;font-size:20px;line-height:1;display:inline-flex;align-items:center;justify-content:center}
+.apply form{padding:18px 26px 26px;display:grid;gap:14px}
+.apply label{display:grid;gap:6px;font-size:14.5px;color:var(--text-secondary)}
+.apply input,.apply select,.apply textarea{font:inherit;font-size:16px;color:var(--text-primary);background:var(--canvas);border:1px solid rgba(205,210,217,.4);border-radius:12px;padding:11px 14px;width:100%;transition:border-color .3s var(--ease-soft)}
+.apply textarea{min-height:96px;resize:vertical}
+.apply input:focus,.apply select:focus,.apply textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-muted)}
+.apply .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.apply .note{font-size:13px;color:var(--text-secondary);margin:0}
+.apply .ok{display:none;padding:12px 26px 30px;text-align:center}
+.apply .ok p{margin:0 0 20px;font-size:1.1rem}
+.apply.sent form{display:none}
+.apply.sent .ok{display:block;animation:dlg .6s var(--ease-out)}
+
+/* ---------- S8 follow + footer ---------- */
+.follow{padding-block:clamp(88px,12vw,150px) clamp(40px,6vw,64px)}
+.handle{font-family:'Marcellus',serif;direction:ltr;font-size:clamp(2.4rem,7vw,6rem);line-height:1.1;margin:0 0 clamp(34px,5vw,54px);color:var(--text-primary);letter-spacing:.02em}
+html[dir=rtl] .handle{text-align:right}
+.socials{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.socials li{display:flex;flex-direction:column;gap:6px;padding:18px;border:1px solid var(--line);border-radius:18px;background:rgba(48,35,27,.5)}
+.socials svg{width:22px;height:22px;margin-bottom:6px}
+.socials svg *{fill:none;stroke:var(--accent);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.socials .t{font-size:13px;color:var(--text-secondary)}
+.socials .v{font-family:var(--f-mono);font-size:14px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+html[dir=rtl] .socials .v{text-align:right}
+footer{border-top:1px solid var(--line);margin-top:clamp(56px,8vw,90px);padding-top:30px;display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between;font-size:14px;color:var(--text-secondary)}
+footer .fl{display:flex;align-items:center;gap:18px}
+footer img{height:26px;width:auto;opacity:.92}
+footer p{margin:0}
+
+/* the pour line (signature) */
+.pour-line{position:fixed;top:0;bottom:0;inset-inline-end:clamp(10px,1.4vw,22px);width:2px;z-index:40;pointer-events:none;opacity:0;transition:opacity .8s var(--ease-soft)}
+.pour-line.on{opacity:1}
+.pour-line .track{position:absolute;inset:0;background:linear-gradient(to bottom,transparent,rgba(205,210,217,.12) 8%,rgba(205,210,217,.12) 92%,transparent)}
+.pour-line .fill{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(205,210,217,0),var(--accent) 30%);transform-origin:top;transform:scaleY(var(--pp,0))}
+.pour-line .tip{position:absolute;left:50%;top:0;width:8px;height:11px;margin-left:-4px;background:var(--accent);clip-path:polygon(50% 0,100% 62%,92% 84%,74% 97%,50% 100%,26% 97%,8% 84%,0 62%);transform:translateY(calc(var(--pp,0)*100vh - 6px))}
+
+/* ---------- responsive ---------- */
+@media (max-width:1080px){
+  .nav ul{gap:18px}
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cards .card:nth-child(even){margin-top:0}
+  .cards .card:nth-child(2),.cards .card:nth-child(4){transform:translateY(40px)}
+  .cards .card:nth-child(2):hover,.cards .card:nth-child(4):hover{transform:translateY(34px)}
+  .loved .cards{padding-bottom:40px}
+  .socials{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .nav ul{display:none;position:absolute;top:100%;inset-inline:12px;flex-direction:column;gap:0;background:rgba(37,26,20,.96);border:1px solid var(--line);border-radius:18px;padding:8px 18px;backdrop-filter:blur(14px)}
+  .nav.open ul{display:flex}
+  .nav ul a{display:block;padding:12px 0}
+  .menu-btn{display:inline-flex}
+  .nav{gap:10px}
+  .story .grid{grid-template-columns:1fr}
+  .atmo .head{grid-template-columns:1fr}
+  .boards,.branches{grid-template-columns:1fr}
+  .pour-line{display:none}
+}
+@media (max-width:720px){
+  body{font-size:16px}
+  .nav .btn{display:none}
+  .cards{grid-template-columns:1fr 1fr;gap:12px}
+  .cards .card:nth-child(2),.cards .card:nth-child(4){transform:translateY(28px)}
+  .card .bd{padding:14px}
+  .card h3{font-size:1.1rem}
+  .card p{font-size:14px}
+  .mosaic{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:170px}
+  .tile:nth-child(1){grid-column:1/span 2;grid-row:span 2}
+  .tile:nth-child(2),.tile:nth-child(3){grid-column:auto;grid-row:span 1}
+  .tile:nth-child(4){grid-column:1/span 2;grid-row:span 1}
+  .stats .stat{padding-inline-start:12px}
+  .stat .lb{font-size:13px}
+  .socials{grid-template-columns:1fr 1fr}
+  .apply .two{grid-template-columns:1fr}
+  .join{min-height:0;flex-direction:column;align-items:stretch}
+  .join::before{display:none}
+  .join .bg,html[dir=rtl] .join .bg{position:relative;inset:auto;height:220px;background-position:center 60%;-webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent);mask-image:linear-gradient(to bottom,#000 55%,transparent)}
+  .join .in-wrap{padding:0 22px 30px;margin-top:-36px}
+  .socials li:nth-child(4),.socials li:nth-child(5){grid-column:1/-1}
+}
+@media (max-height:560px){.cue{display:none}}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important;transition-delay:0s!important}
+  .rv,.items li{opacity:1!important;transform:none!important}
+  .items .dots,.divider .ln{transform:none!important}
+  .divider .drop{opacity:1!important;transform:none!important}
+  .icon path,.icon line,.icon circle,.icon rect{stroke-dashoffset:0!important}
+  .card .ph img{transform:none!important}
+  @media (max-width:1080px){.cards .card:nth-child(2),.cards .card:nth-child(4){transform:translateY(40px)!important}}
+  @media (max-width:720px){.cards .card:nth-child(2),.cards .card:nth-child(4){transform:translateY(28px)!important}}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main"><span lang="ar">انتقل إلى المحتوى</span><span lang="en">Skip to content</span></a>
+
+<div class="env" aria-hidden="true"><div class="glow g1"></div><div class="glow g2"></div><div class="grain"></div></div>
+<div class="pour-line" aria-hidden="true"><div class="track"></div><div class="fill"></div><div class="tip"></div></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top"><img src="assets/logo.webp" alt="Spilver سبيلفر" width="720" height="158"></a>
+  <nav aria-label="Main">
+    <ul id="navlinks">
+      <li><a href="#story"><span lang="ar">قصتنا</span><span lang="en">Our story</span></a></li>
+      <li><a href="#loved"><span lang="ar">الأكثر طلبًا</span><span lang="en">Most loved</span></a></li>
+      <li><a href="#menu"><span lang="ar">المنيو</span><span lang="en">Menu</span></a></li>
+      <li><a href="#atmosphere"><span lang="ar">الأجواء</span><span lang="en">Atmosphere</span></a></li>
+      <li><a href="#visit"><span lang="ar">فروعنا</span><span lang="en">Branches</span></a></li>
+    </ul>
+  </nav>
+  <button class="lang" id="langBtn" type="button"><span lang="ar" aria-label="Switch to English">EN</span><span lang="en" aria-label="التحويل إلى العربية">ع</span></button>
+  <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navlinks"><span></span><i class="sr">Menu</i></button>
+  <a class="btn btn-accent" href="#visit"><span lang="ar">زورنا</span><span lang="en">Visit us</span></a>
+</header>
+
+<section class="hero" id="top" aria-label="Spilver">
+  <div class="stage" id="stage">
+    <div class="poster" id="poster" aria-hidden="true"></div>
+    <div class="poster-end" id="posterEnd" aria-hidden="true"></div>
+    <div class="static-bg" aria-hidden="true"></div>
+    <video id="hero" muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+    <div class="scrim" aria-hidden="true"></div>
+
+    <div class="band b1" data-range="0,0.29" data-ramp="0.06">
+      <p class="line split" data-ar="كل عائلة لها حكاية." data-en="Every family has a story." data-spread="0.35">كل عائلة لها حكاية.</p>
+    </div>
+    <div class="band b2" data-range="0.33,0.64" data-ramp="0.07">
+      <p class="line split" data-ar="وحكايتنا بدأت بخمسة إخوة." data-en="Ours began with five brothers." data-spread="0.45">وحكايتنا بدأت بخمسة إخوة.</p>
+    </div>
+    <div class="band b3" data-range="0.69,1" data-ramp="0.09">
+      <h1 class="split" data-ar="سبيلفر" data-en="Spilver" data-spread="0.2">سبيلفر</h1>
+      <p class="sub"><span lang="ar">خمسة إخوة، جمعتهم القهوة وصنعوا منها حكاية.</span><span lang="en">Five brothers, brought together by coffee, and the story they made from it.</span></p>
+      <div class="cta">
+        <a class="btn btn-accent" href="#visit"><span lang="ar">زورنا في فرعك</span><span lang="en">Visit your branch</span> <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href="#menu"><span lang="ar">شوف المنيو</span><span lang="en">See the menu</span></a>
+      </div>
+    </div>
+
+    <div class="cue" id="cue" aria-hidden="true">
+      <svg class="ring" viewBox="0 0 48 48"><circle class="track" cx="24" cy="24" r="20" fill="none" stroke-width="3"/><circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="126" style="stroke-dashoffset:var(--ld,126)"/></svg>
+      <div class="chev"></div>
+      <span><span lang="ar">مرّر للأسفل</span><span lang="en">Scroll down</span></span>
+    </div>
+  </div>
+</section>
+
+<main id="main" tabindex="-1">
+
+  <!-- S1 story -->
+  <section class="sec story" id="story" aria-labelledby="story-h">
+    <div class="wrap grid">
+      <div class="pour-card rv" id="pourCard">
+        <svg class="pour-svg" id="pourSvg" viewBox="0 0 360 440" aria-hidden="true">
+          <defs>
+            <clipPath id="glassClip"><path d="M124 266 L138 392 Q140 400 148 400 L212 400 Q220 400 222 392 L236 266 Z"/></clipPath>
+            <linearGradient id="esp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9955E"/><stop offset=".09" stop-color="#9A6437"/><stop offset=".22" stop-color="#4A2A16"/><stop offset="1" stop-color="#241208"/></linearGradient>
+          </defs>
+          <g class="spouts">
+            <circle class="spout" cx="60" cy="22" r="5"/><circle class="spout" cx="120" cy="22" r="5"/><circle class="spout" cx="180" cy="22" r="5"/><circle class="spout" cx="240" cy="22" r="5"/><circle class="spout" cx="300" cy="22" r="5"/>
+          </g>
+          <g class="guides"><path class="guide" d="M60 28 C60 150 168 170 172 262"/><path class="guide" d="M120 28 C120 150 174 180 176 262"/><path class="guide" d="M180 28 L180 262"/><path class="guide" d="M240 28 C240 150 186 180 184 262"/><path class="guide" d="M300 28 C300 150 192 170 188 262"/></g>
+          <path class="stream" pathLength="1" d="M60 28 C60 150 168 170 172 262"/>
+          <path class="stream" pathLength="1" d="M120 28 C120 150 174 180 176 262"/>
+          <path class="stream" pathLength="1" d="M180 28 L180 262"/>
+          <path class="stream" pathLength="1" d="M240 28 C240 150 186 180 184 262"/>
+          <path class="stream" pathLength="1" d="M300 28 C300 150 192 170 188 262"/>
+          <g clip-path="url(#glassClip)"><g class="fill"><rect x="110" y="262" width="140" height="150" fill="url(#esp)"/></g></g>
+          <path class="glass" d="M118 258 L136 394 Q138 406 150 406 L210 406 Q222 406 224 394 L242 258"/>
+          <ellipse cx="180" cy="418" rx="92" ry="9" fill="none" stroke="rgba(205,210,217,.3)" stroke-width="1.4"/>
+          <g class="steam"><path d="M168 244 C160 226 176 214 168 196"/><path d="M192 244 C200 226 184 214 192 196"/></g>
+        </svg>
+        <button class="hold" id="holdBtn" type="button">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><circle class="hr-track" cx="24" cy="24" r="21" fill="none" stroke-width="2.5"/><circle class="hr-fill" cx="24" cy="24" r="21" fill="none" stroke-width="2.5" stroke-linecap="round"/><circle class="dot" cx="24" cy="24" r="5"/></svg>
+          <span class="lbl-idle"><span lang="ar">اضغط مطوّلًا واسكب</span><span lang="en">Press and hold to pour</span></span>
+          <span class="lbl-done"><span lang="ar">انسكبت. هذي سبيلفر.</span><span lang="en">Poured. This is Spilver.</span></span>
+        </button>
+        <ol class="five" aria-label="Spilver">
+          <li style="--i:0"><span lang="ar">جلسة</span><span lang="en">Gathering</span></li>
+          <li style="--i:1"><span lang="ar">حديث</span><span lang="en">Talk</span></li>
+          <li style="--i:2"><span lang="ar">قهوة</span><span lang="en">Coffee</span></li>
+          <li style="--i:3"><span lang="ar">هدوء</span><span lang="en">Calm</span></li>
+          <li style="--i:4"><span lang="ar">ذكرى</span><span lang="en">Memory</span></li>
+        </ol>
+      </div>
+      <div class="story-text">
+        <p class="kicker rv" style="--i:0"><span class="drop" aria-hidden="true"></span><span lang="ar">قصتنا</span><span lang="en">Our story</span></p>
+        <h2 class="h2 rv" style="--i:1" id="story-h"><span lang="ar">خمسة إخوة. فنجان واحد.</span><span lang="en">Five brothers. One cup.</span></h2>
+        <p class="first rv" style="--i:2"><span lang="ar">كل عائلة لها حكاية… وحكايتنا بدأت بخمسة إخوة.</span><span lang="en">Every family has a story. Ours began with five brothers.</span></p>
+        <p class="rest rv" style="--i:3"><span lang="ar">كبرت الفكرة من جلساتنا وأحاديثنا وحبنا للقهوة، إلى رغبة في صناعة مكان يحمل شيئًا منا؛ مكان يجمع الناس حول كوب قهوة، ويمنحهم لحظة هادئة، وذكرى جميلة.</span><span lang="en">The idea grew out of our long sittings, our conversations and our love for coffee, into wanting a place that carries something of us. A place that gathers people around a cup, gives them a quiet moment, and leaves them a good memory.</span></p>
+        <p class="seal"><span lang="ar">سبيلفر… خمسة إخوة، جمعتهم القهوة وصنعوا منها حكاية.</span><span lang="en">Spilver. Five brothers, brought together by coffee.</span></p>
+      </div>
+    </div>
+    <div class="wrap stats rv" id="stats">
+      <div class="stat"><span class="num" data-count="5">5</span><span class="lb"><span lang="ar">إخوة</span><span lang="en">brothers</span></span></div>
+      <div class="stat"><span class="num" data-count="2">2</span><span class="lb"><span lang="ar">فرعين في جدة</span><span lang="en">branches in Jeddah</span></span></div>
+      <div class="stat"><span class="num" data-count="19">19</span><span class="lb"><span lang="ar">صنف في المنيو</span><span lang="en">items on the menu</span></span></div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><span class="drop"></span><span class="ln" style="--origin-start:var(--origin-end,left)"></span></div>
+
+  <!-- S2 most loved -->
+  <section class="sec loved" id="loved" aria-labelledby="loved-h">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <p class="kicker rv" style="--i:0"><span class="drop" aria-hidden="true"></span><span lang="ar">الأكثر طلبًا</span><span lang="en">Most loved</span></p>
+          <h2 class="h2 rv" style="--i:1" id="loved-h"><span lang="ar">اللي يرجعون له كل مرة.</span><span lang="en">The ones people come back for.</span></h2>
+        </div>
+        <a class="btn btn-ghost rv" style="--i:2" href="#menu"><span lang="ar">المنيو كامل</span><span lang="en">Full menu</span> <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+      <div class="cards">
+        <article class="card rv" style="--i:0"><div class="ph"><img src="assets/loved-caramel.jpg" alt="" loading="lazy" width="800" height="1000"></div><div class="bd"><span class="no">01</span><h3><span lang="ar">كراميل ماكياتو</span><span lang="en">Caramel Macchiato</span></h3><p><span lang="ar">حليب وإسبريسو وكراميل، بطبقات تشوفها قبل ما تذوقها.</span><span lang="en">Milk, espresso and caramel, in layers you see before you taste.</span></p><span class="price">$5.50</span></div></article>
+        <article class="card rv" style="--i:1"><div class="ph"><img src="assets/loved-iced-latte.jpg" alt="" loading="lazy" width="800" height="1000"></div><div class="bd"><span class="no">02</span><h3><span lang="ar">لاتيه مثلج</span><span lang="en">Iced Latte</span></h3><p><span lang="ar">دبل شوت على حليب بارد وثلج. خفيف ومتوازن.</span><span lang="en">A double shot over cold milk and ice. Light and balanced.</span></p><span class="price">$5.00</span></div></article>
+        <article class="card rv" style="--i:2"><div class="ph"><img src="assets/loved-matcha.jpg" alt="" loading="lazy" width="800" height="1000"></div><div class="bd"><span class="no">03</span><h3><span lang="ar">لاتيه ماتشا</span><span lang="en">Matcha Latte</span></h3><p><span lang="ar">ماتشا ناعمة مخفوقة مع الحليب. هدوء في كوب.</span><span lang="en">Smooth whisked matcha with milk. Calm in a cup.</span></p><span class="price">$5.50</span></div></article>
+        <article class="card rv" style="--i:3"><div class="ph"><img src="assets/loved-iced-mocha.jpg" alt="" loading="lazy" width="800" height="1000"></div><div class="bd"><span class="no">04</span><h3><span lang="ar">موكا مثلج</span><span lang="en">Iced Mocha</span></h3><p><span lang="ar">شوكولاتة وإسبريسو على ثلج، للي يبي الحلا والقهوة مع بعض.</span><span lang="en">Chocolate and espresso over ice, for when you want dessert and coffee together.</span></p><span class="price">$5.50</span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- S3 menu -->
+  <section class="sec menu-sec" id="menu" aria-labelledby="menu-h">
+    <div class="wrap">
+      <div class="head">
+        <p class="kicker rv" style="--i:0"><span class="drop" aria-hidden="true"></span><span lang="ar">المنيو</span><span lang="en">Menu</span></p>
+        <h2 class="h2 rv" style="--i:1" id="menu-h"><span lang="ar">قائمة قصيرة، كل صنف فيها مسوّى صح.</span><span lang="en">A short menu. Every item made right.</span></h2>
+      </div>
+      <div class="boards">
+        <article class="board rv" style="--i:0">
+          <header class="board-head">
+            <svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><path pathLength="1" d="M14 12 L34 12 L31 42 L17 42 Z"/><path pathLength="1" d="M26 12 L30 3"/><rect pathLength="1" x="19" y="18" width="6" height="6" rx="1.5"/><rect pathLength="1" x="24" y="26" width="6" height="6" rx="1.5"/></svg>
+            <h3><span lang="ar">باردة</span><span lang="en">Iced</span></h3><span class="count">05</span>
+          </header>
+          <ul class="items">
+            <li style="--i:0"><span class="nm"><span lang="ar">أمريكانو مثلج</span><span lang="en">Iced Americano</span></span><span class="dots" aria-hidden="true"></span><span class="price">$4.00</span></li>
+            <li style="--i:1"><span class="nm"><span lang="ar">لاتيه مثلج</span><span lang="en">Iced Latte</span></span><span class="dots" aria-hidden="true"></span><span class="price">$5.00</span></li>
+            <li style="--i:2"><span class="nm"><span lang="ar">موكا مثلج</span><span lang="en">Iced Mocha</span></span><span class="dots" aria-hidden="true"></span><span class="price">$5.50</span></li>
+            <li style="--i:3"><span class="nm"><span lang="ar">كراميل ماكياتو</span><span lang="en">Caramel Macchiato</span></span><span class="dots" aria-hidden="true"></span><span class="price">$5.50</span></li>
+            <li style="--i:4"><span class="nm"><span lang="ar">قهوة باردة</span><span lang="en">Cold Brew</span></span><span class="dots" aria-hidden="true"></span><span class="price">$4.50</span></li>
+          </ul>
+        </article>
+        <article class="board rv" style="--i:1">
+          <header class="board-head">
+            <svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><path pathLength="1" d="M9 20 L33 20 L31 36 Q30 40 26 40 L16 40 Q12 40 11 36 Z"/><path pathLength="1" d="M33 24 Q40 24 39 30 Q38 34 32 33"/><path pathLength="1" d="M6 44 L36 44"/><path class="steam-i" pathLength="1" d="M17 15 Q14 11 17 7"/><path class="steam-i" pathLength="1" d="M25 15 Q22 11 25 7"/></svg>
+            <h3><span lang="ar">ساخنة</span><span lang="en">Hot coffee</span></h3><span class="count">05</span>
+          </header>
+          <ul class="items">
+            <li style="--i:0"><span class="nm"><span lang="ar">إسبريسو</span><span lang="en">Espresso</span></span><span class="dots" aria-hidden="true"></span><span class="price">$3.00</span></li>
+            <li style="--i:1"><span class="nm"><span lang="ar">أمريكانو</span><span lang="en">Americano</span></span><span class="dots" aria-hidden="true"></span><span class="price">$3.50</span></li>
+            <li style="--i:2"><span class="nm"><span lang="ar">كابتشينو</span><span lang="en">Cappuccino</span></span><span class="dots" aria-hidden="true"></span><span class="price">$4.50</span></li>
+            <li style="--i:3"><span class="nm"><span lang="ar">فلات وايت</span><span lang="en">Flat White</span></span><span class="dots" aria-hidden="true"></span><span class="price">$4.50</span></li>
+            <li style="--i:4"><span class="nm"><span lang="ar">موكا</span><span lang="en">Mocha</span></span><span class="dots" aria-hidden="true"></span><span class="price">$5.50</span></li>
+          </ul>
+        </article>
+        <article class="board rv" style="--i:2">
+          <header class="board-head">
+            <svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><path pathLength="1" d="M10 22 Q10 40 24 40 Q38 40 38 22 Z"/><path pathLength="1" d="M38 26 L44 20"/><path pathLength="1" d="M18 22 Q18 16 24 16 Q30 16 30 22"/><circle pathLength="1" cx="24" cy="13" r="2.5"/><path pathLength="1" d="M12 44 L36 44"/></svg>
+            <h3><span lang="ar">شاي وأكثر</span><span lang="en">Tea and more</span></h3><span class="count">05</span>
+          </header>
+          <ul class="items">
+            <li style="--i:0"><span class="nm"><span lang="ar">شاي تايلاندي</span><span lang="en">Thai Tea</span></span><span class="dots" aria-hidden="true"></span><span class="price">$4.50</span></li>
+            <li style="--i:1"><span class="nm"><span lang="ar">شاي تشاي</span><span lang="en">Chai Tea</span></span><span class="dots" aria-hidden="true"></span><span class="price">$4.50</span></li>
+            <li style="--i:2"><span class="nm"><span lang="ar">لاتيه ماتشا</span><span lang="en">Matcha Latte</span></span><span class="dots" aria-hidden="true"></span><span class="price">$5.50</span></li>
+            <li style="--i:3"><span class="nm"><span lang="ar">شوكولاتة ساخنة</span><span lang="en">Hot Chocolate</span></span><span class="dots" aria-hidden="true"></span><span class="price">$4.50</span></li>
+            <li style="--i:4"><span class="nm"><span lang="ar">شاي أعشاب</span><span lang="en">Herbal Tea</span></span><span class="dots" aria-hidden="true"></span><span class="price">$3.50</span></li>
+          </ul>
+        </article>
+        <article class="board rv" style="--i:3">
+          <header class="board-head">
+            <svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><path pathLength="1" d="M6 32 Q10 18 24 16 Q38 18 42 32 Q34 36 24 36 Q14 36 6 32 Z"/><path pathLength="1" d="M17 19 Q19 27 18 35"/><path pathLength="1" d="M24 16 L24 36"/><path pathLength="1" d="M31 19 Q29 27 30 35"/></svg>
+            <h3><span lang="ar">مخبوزات</span><span lang="en">Bakery</span></h3><span class="count">04</span>
+          </header>
+          <ul class="items">
+            <li style="--i:0"><span class="nm"><span lang="ar">كرواسون</span><span lang="en">Croissant</span></span><span class="dots" aria-hidden="true"></span><span class="price">$3.50</span></li>
+            <li style="--i:1"><span class="nm"><span lang="ar">مافن التوت الأزرق</span><span lang="en">Blueberry Muffin</span></span><span class="dots" aria-hidden="true"></span><span class="price">$3.00</span></li>
+            <li style="--i:2"><span class="nm"><span lang="ar">كوكيز الشوكولاتة</span><span lang="en">Chocolate Cookies</span></span><span class="dots" aria-hidden="true"></span><span class="price">$2.50</span></li>
+            <li style="--i:3"><span class="nm"><span lang="ar">خبز الأفوكادو</span><span lang="en">Avocado Toast</span></span><span class="dots" aria-hidden="true"></span><span class="price">$6.50</span></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- S4 atmosphere -->
+  <section class="sec atmo" id="atmosphere" aria-labelledby="atmo-h">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <p class="kicker rv" style="--i:0"><span class="drop" aria-hidden="true"></span><span lang="ar">أجواء سبيلفر</span><span lang="en">The Spilver feel</span></p>
+          <h2 class="h2 rv" style="--i:1" id="atmo-h"><span lang="ar">مكان تجلس فيه وتتنفس.</span><span lang="en">A place to sit and breathe.</span></h2>
+        </div>
+        <p class="lede rv" style="--i:2"><span lang="ar">إضاءة دافية، جلسات مريحة، وهدوء يخليك تطوّل.</span><span lang="en">Warm light, comfortable seats, and a calm that makes you stay longer.</span></p>
+      </div>
+      <div class="mosaic">
+        <figure class="tile rv" style="--i:0"><img src="assets/atmo-window.jpg" alt="" loading="lazy"><figcaption><span lang="ar">جلسة الشباك</span><span lang="en">The window seat</span></figcaption></figure>
+        <figure class="tile rv" style="--i:1"><img src="assets/atmo-family.jpg" alt="" loading="lazy"><figcaption><span lang="ar">ركن العائلة</span><span lang="en">The family corner</span></figcaption></figure>
+        <figure class="tile rv" style="--i:2"><img src="assets/atmo-bar.jpg" alt="" loading="lazy"><figcaption><span lang="ar">البار</span><span lang="en">The bar</span></figcaption></figure>
+        <figure class="tile rv" style="--i:3"><img src="assets/atmo-terrace.jpg" alt="" loading="lazy"><figcaption><span lang="ar">التراس وقت المغرب</span><span lang="en">The terrace at sunset</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- S5 faq -->
+  <section class="sec faq" id="faq" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div class="head">
+        <p class="kicker rv" style="--i:0"><span class="drop" aria-hidden="true"></span><span lang="ar">قبل ما تجينا</span><span lang="en">Before you come</span></p>
+        <h2 class="h2 rv" style="--i:1" id="faq-h"><span lang="ar">أسئلة نسمعها كثير.</span><span lang="en">Questions we hear a lot.</span></h2>
+      </div>
+      <div class="qas rv" style="--i:2">
+        <div class="qa"><button type="button" aria-expanded="false" aria-controls="a1" id="q1"><span class="q"><span lang="ar">متى يكون الفرع أهدأ؟</span><span lang="en">When is it quietest?</span></span><span class="pm" aria-hidden="true"></span></button><div class="a" id="a1" role="region" aria-labelledby="q1"><div><p><span lang="ar">الصبح قبل 11، وبعد العشاء. وإذا جاي مع مجموعة كبيرة، راسلنا واتساب ونجهّز لك جلستك.</span><span lang="en">Mornings before 11, and after dinner. Coming with a big group? Message us on WhatsApp and we will set up your table.</span></p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false" aria-controls="a2" id="q2"><span class="q"><span lang="ar">هل القهوة نفسها في الفرعين؟</span><span lang="en">Is the coffee the same at both?</span></span><span class="pm" aria-hidden="true"></span></button><div class="a" id="a2" role="region" aria-labelledby="q2"><div><p><span lang="ar">نفس الحبوب، نفس الوصفة، ونفس الوزن في كل كوب.</span><span lang="en">Same beans, same recipe, same measure in every cup.</span></p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false" aria-controls="a3" id="q3"><span class="q"><span lang="ar">فيه مواقف؟</span><span lang="en">Is there parking?</span></span><span class="pm" aria-hidden="true"></span></button><div class="a" id="a3" role="region" aria-labelledby="q3"><div><p><span lang="ar">إيه، الفرعين فيهم مواقف قدام الباب.</span><span lang="en">Yes. Both branches have parking right at the door.</span></p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false" aria-controls="a4" id="q4"><span class="q"><span lang="ar">فيه حليب نباتي؟</span><span lang="en">Do you have plant milk?</span></span><span class="pm" aria-hidden="true"></span></button><div class="a" id="a4" role="region" aria-labelledby="q4"><div><p><span lang="ar">فيه حليب الشوفان واللوز لأي مشروب، بدون زيادة في السعر.</span><span lang="en">Oat and almond milk for any drink, at no extra cost.</span></p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false" aria-controls="a5" id="q5"><span class="q"><span lang="ar">أقدر أذاكر أو أشتغل عندكم؟</span><span lang="en">Can I study or work there?</span></span><span class="pm" aria-hidden="true"></span></button><div class="a" id="a5" role="region" aria-labelledby="q5"><div><p><span lang="ar">أكيد. فيه واي فاي وأفياش عند أغلب الطاولات، وركن هادئ في فرع الروضة.</span><span lang="en">Of course. There is Wi-Fi and power outlets at most tables, and a quiet corner at Al Rawdah.</span></p></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S6 branches, the call to action -->
+  <section class="sec visit" id="visit" aria-labelledby="visit-h">
+    <div class="wrap">
+      <p class="kicker rv" style="--i:0"><span class="drop" aria-hidden="true"></span><span lang="ar">فروعنا</span><span lang="en">Our branches</span></p>
+      <h2 class="h2 rv" style="--i:1" id="visit-h"><span lang="ar">زورنا في فرعك.</span><span lang="en">Visit your branch.</span></h2>
+      <p class="lede rv" style="--i:2"><span lang="ar">فرعين في جدة. نفس الطعم، ونفس الترحيب.</span><span lang="en">Two branches in Jeddah. Same taste, same welcome.</span></p>
+      <div class="branches">
+        <article class="branch rv" style="--i:0">
+          <div class="ph"><img src="assets/branch-shati.jpg" alt="" loading="lazy"><h3><span lang="ar">سبيلفر الشاطئ</span><span lang="en">Spilver Al Shati</span></h3></div>
+          <div class="bd">
+            <div class="row"><svg viewBox="0 0 24 24" class="pin-pulse" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span><span lang="ar">حي الشاطئ، الكورنيش الشمالي، جدة</span><span lang="en">Al Shati, North Corniche, Jeddah</span></span></div>
+            <div class="row"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><span lang="ar">يوميًا من 7 صباحًا إلى 1 بعد منتصف الليل</span><span lang="en">Daily, 7 am to 1 am</span></span></div>
+            <ul class="tags"><li><span lang="ar">جلسات خارجية مطلة على البحر</span><span lang="en">Outdoor seats facing the sea</span></li><li><span lang="ar">مواقف قدام الباب</span><span lang="en">Parking at the door</span></li></ul>
+            <a class="btn btn-accent" href="https://www.google.com/maps/search/?api=1&amp;query=Al%20Shati%20Jeddah" target="_blank" rel="noopener"><span lang="ar">الاتجاهات</span><span lang="en">Get directions</span> <span class="arrow" aria-hidden="true">→</span></a>
+          </div>
+        </article>
+        <article class="branch rv" style="--i:1">
+          <div class="ph"><img src="assets/branch-rawdah.jpg" alt="" loading="lazy"><h3><span lang="ar">سبيلفر الروضة</span><span lang="en">Spilver Al Rawdah</span></h3></div>
+          <div class="bd">
+            <div class="row"><svg viewBox="0 0 24 24" class="pin-pulse" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span><span lang="ar">حي الروضة، قريب من شارع التحلية، جدة</span><span lang="en">Al Rawdah, near Tahlia Street, Jeddah</span></span></div>
+            <div class="row"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><span lang="ar">يوميًا من 7 صباحًا إلى 1 بعد منتصف الليل</span><span lang="en">Daily, 7 am to 1 am</span></span></div>
+            <ul class="tags"><li><span lang="ar">ركن هادئ للدراسة والعمل</span><span lang="en">A quiet corner for study and work</span></li><li><span lang="ar">جلسات عائلية</span><span lang="en">Family seating</span></li></ul>
+            <a class="btn btn-accent" href="https://www.google.com/maps/search/?api=1&amp;query=Al%20Rawdah%20Jeddah" target="_blank" rel="noopener"><span lang="ar">الاتجاهات</span><span lang="en">Get directions</span> <span class="arrow" aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- S7 join -->
+  <section class="join rv" id="join" aria-labelledby="join-h">
+    <div class="bg" aria-hidden="true" style="background-image:url(assets/hero-ending.jpg)"></div>
+    <div class="in-wrap">
+      <p class="kicker"><span class="drop" aria-hidden="true"></span><span lang="ar">انضم إلى فريقنا</span><span lang="en">Join our team</span></p>
+      <h2 class="h2" id="join-h"><span lang="ar">تحب القهوة والناس؟ مكانك معنا.</span><span lang="en">Love coffee and people? There's a place for you here.</span></h2>
+      <p class="lede"><span lang="ar">نبحث عن باريستا ومضيفين يستقبلون الناس مثل ما نستقبل أهلنا.</span><span lang="en">We are looking for baristas and hosts who welcome people the way we welcome family.</span></p>
+      <button class="btn btn-accent" type="button" id="joinBtn"><span lang="ar">انضم إلى فريقنا</span><span lang="en">Join our team</span> <span class="arrow" aria-hidden="true">→</span></button>
+    </div>
+  </section>
+
+  <!-- S8 follow -->
+  <section class="follow" id="follow" aria-labelledby="follow-h">
+    <div class="wrap">
+      <p class="kicker rv" style="--i:0"><span class="drop" aria-hidden="true"></span><span lang="ar" id="follow-h">تابعنا</span><span lang="en">Follow us</span></p>
+      <p class="handle rv" style="--i:1">@spilver.cafe</p>
+      <ul class="socials">
+        <li class="rv" style="--i:0"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></svg><span class="t">Instagram</span><span class="v">@spilver.cafe</span></li>
+        <li class="rv" style="--i:1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5c3.3 0 5.3 2.5 5.3 5.4v2.3l1.9-.5c.4 0 .6.5.3.8-.6.5-1.7.9-2.2 1.1.6 1.6 1.8 2.9 3.4 3.5.3.1.3.6 0 .7-.9.4-1.8.5-2.2.6-.2.4-.2 1-.6 1.1-.7.1-1.6-.3-2.5 0-.9.3-1.8 1.4-3.4 1.4s-2.5-1.1-3.4-1.4c-.9-.3-1.8.1-2.5 0-.4-.1-.4-.7-.6-1.1-.4-.1-1.3-.2-2.2-.6-.3-.1-.3-.6 0-.7 1.6-.6 2.8-1.9 3.4-3.5-.5-.2-1.6-.6-2.2-1.1-.3-.3-.1-.8.3-.8l1.9.5V8.9c0-2.9 2-5.4 5.3-5.4z"/></svg><span class="t">Snapchat</span><span class="v">@spilver.cafe</span></li>
+        <li class="rv" style="--i:2"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3.5v11.2a3.8 3.8 0 1 1-3.8-3.8"/><path d="M14 3.5c.4 2.6 2.2 4.4 5 4.6"/></svg><span class="t">TikTok</span><span class="v">@spilver.cafe</span></li>
+        <li class="rv" style="--i:3"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg><span class="t"><span lang="ar">البريد الإلكتروني</span><span lang="en">Email</span></span><span class="v">hello@spilver.cafe</span></li>
+        <li class="rv" style="--i:4"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.2-4.1A8.5 8.5 0 1 1 8.4 19z"/><path d="M9 8.6c.2 2.9 2.6 5.8 6 6.4l1.2-1.4-2-1-1 1c-1.2-.6-2.2-1.6-2.8-2.8l1-1-1-2z"/></svg><span class="t"><span lang="ar">واتساب</span><span lang="en">WhatsApp</span></span><span class="v">+966 50 000 0000</span></li>
+      </ul>
+      <footer>
+        <div class="fl"><img src="assets/logo.webp" alt="Spilver" width="720" height="158" loading="lazy"><p><span lang="ar">© 2026 سبيلفر. كل الحقوق محفوظة.</span><span lang="en">© 2026 Spilver. All rights reserved.</span></p></div>
+        <p><span lang="ar">سبيلفر مشروع تجريبي، والصور والفيديو مولّدة بالذكاء الاصطناعي.</span><span lang="en">Spilver is a concept project. Photos and video are AI generated.</span></p>
+        <a class="btn btn-ghost" href="#visit"><span lang="ar">زورنا في فرعك</span><span lang="en">Visit your branch</span></a>
+      </footer>
+    </div>
+  </section>
+</main>
+
+<dialog class="apply" id="applyDlg" aria-labelledby="dlg-h">
+  <div class="dh"><h2 id="dlg-h"><span lang="ar">انضم إلى فريقنا</span><span lang="en">Join our team</span></h2><button class="x" type="button" id="dlgClose" data-i18n-aria="close">×</button></div>
+  <form id="applyForm" novalidate>
+    <label><span><span lang="ar">الاسم</span><span lang="en">Name</span></span><input name="name" required autocomplete="name" data-ph="name"></label>
+    <label><span><span lang="ar">رقم الجوال</span><span lang="en">Mobile</span></span><input name="phone" required type="tel" inputmode="tel" autocomplete="tel" dir="ltr" placeholder="05X XXX XXXX"></label>
+    <div class="two">
+      <label><span><span lang="ar">الفرع</span><span lang="en">Branch</span></span><select name="branch" data-opts="branches"></select></label>
+      <label><span><span lang="ar">الوظيفة</span><span lang="en">Role</span></span><select name="role" data-opts="roles"></select></label>
+    </div>
+    <label><span><span lang="ar">كلمنا عنك</span><span lang="en">Tell us about you</span></span><textarea name="about" data-ph="about"></textarea></label>
+    <p class="note"><span lang="ar">هذا نموذج تجريبي، ما يرسل بياناتك لأي مكان.</span><span lang="en">This is a demo form. It does not send your details anywhere.</span></p>
+    <button class="btn btn-accent" type="submit"><span lang="ar">أرسل طلبي</span><span lang="en">Send my application</span></button>
+  </form>
+  <div class="ok" role="status" aria-live="polite"><p id="okMsg"></p><button class="btn btn-ghost" type="button" id="okClose"><span lang="ar">تمام</span><span lang="en">Done</span></button></div>
+</dialog>
+
+<script>
+(() => {
+'use strict';
+const doc = document.documentElement;
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+const smoothstep = (p, e0, e1) => { const t = clamp((p - e0) / (e1 - e0), 0, 1); return t * t * (3 - 2 * t); };
+const RM = matchMedia('(prefers-reduced-motion: reduce)');
+
+/* ---------------- language ---------------- */
+const T = {
+  ar: {
+    title: 'سبيلفر | Spilver Café',
+    name: 'اسمك الكامل', about: 'خبرتك، وليش تحب القهوة', close: 'إغلاق',
+    branches: ['سبيلفر الشاطئ', 'سبيلفر الروضة', 'أي فرع'],
+    roles: ['باريستا', 'مضيف', 'مخبوزات'],
+    ok: n => `شكرًا يا ${n}. هذا موقع تجريبي، فطلبك ما انرسل لأي مكان.`,
+    menu: 'القائمة'
+  },
+  en: {
+    title: 'Spilver Café | سبيلفر',
+    name: 'Your full name', about: 'Your experience, and why you love coffee', close: 'Close',
+    branches: ['Spilver Al Shati', 'Spilver Al Rawdah', 'Either one'],
+    roles: ['Barista', 'Host', 'Bakery'],
+    ok: n => `Thank you, ${n}. This is a demo site, so your application was not sent anywhere.`,
+    menu: 'Menu'
+  }
+};
+function rng(seed) { let s = seed >>> 0; return () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296; }
+function splitAll() {
+  const lang = doc.lang;
+  $$('.split').forEach((el, n) => {
+    const txt = el.dataset[lang] || el.textContent;
+    const spread = parseFloat(el.dataset.spread || '0.4');
+    const r = rng(7 + n * 31);
+    el.textContent = '';
+    const sr = document.createElement('span'); sr.className = 'sr'; sr.textContent = txt;
+    const vis = document.createElement('span'); vis.setAttribute('aria-hidden', 'true');
+    const words = txt.split(' ');
+    words.forEach((w, i) => {
+      const s = document.createElement('span');
+      s.className = 'w'; s.textContent = w;
+      s.style.setProperty('--th', (i / Math.max(1, words.length) * spread + r() * 0.05).toFixed(3));
+      vis.append(s);
+      if (i < words.length - 1) vis.append(' ');
+    });
+    el.append(sr, vis);
+  });
+}
+function applyLangStrings() {
+  const t = T[doc.lang];
+  document.title = t.title;
+  $$('[data-ph]').forEach(el => el.placeholder = t[el.dataset.ph]);
+  $$('[data-i18n-aria]').forEach(el => el.setAttribute('aria-label', t[el.dataset.i18nAria]));
+  $$('select[data-opts]').forEach(sel => {
+    const i = sel.selectedIndex;
+    sel.textContent = '';
+    t[sel.dataset.opts].forEach(o => sel.append(new Option(o, o)));
+    if (i > 0) sel.selectedIndex = i;
+  });
+}
+function setLang(lang, save) {
+  doc.lang = lang;
+  doc.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  splitAll();
+  applyLangStrings();
+  bands.forEach(b => { b.op = -1; b.k = -1; });
+  if (scrubOn) updateCaptions(shown);
+  if (save) { try { localStorage.setItem('spilver-lang', lang); } catch (e) {} }
+}
+$('#langBtn').addEventListener('click', () => setLang(doc.lang === 'ar' ? 'en' : 'ar', true));
+
+/* ---------------- nav ---------------- */
+const nav = $('#nav'), menuBtn = $('#menuBtn');
+menuBtn.addEventListener('click', () => {
+  const open = !nav.classList.contains('open');
+  nav.classList.toggle('open', open);
+  menuBtn.setAttribute('aria-expanded', String(open));
+});
+$$('#navlinks a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); }));
+
+/* ---------------- hero scrub ---------------- */
+const VIDEO_URL = 'assets/hero-scrub.mp4';
+const VIDEO_BYTES = 4482070;   // real encoded size, the fallback when Content-Length is missing
+const POSTER_URL = 'assets/hero-poster.jpg';
+const hero = $('#top'), stage = $('#stage'), video = $('#hero'), cue = $('#cue'), ring = $('.ring', cue), posterLayer = $('#poster'), posterEnd = $('#posterEnd');
+let videoFailed = false, lastPe = -1;
+const bands = $$('.band').map((el, i, all) => {
+  const [a, b] = el.dataset.range.split(',').map(Number);
+  return { el, a, b, first: i === 0, last: i === all.length - 1, ramp: parseFloat(el.dataset.ramp || '0'), op: -1, k: -1, vis: null, on: null };
+});
+const RAMP_VH = 20;
+let target = 0, shown = 0, rafId = null, lastTick = 0, heroOnScreen = true, scrubOn = false, loadK = 0, loadStart = 0;
+
+function heroProgress() {
+  const range = hero.offsetHeight - innerHeight;
+  if (range <= 0) return 0;
+  return clamp((scrollY - hero.offsetTop) / range, 0, 1);
+}
+function updateCaptions(p) {
+  const rangeVh = Math.max(1, (hero.offsetHeight - innerHeight) / innerHeight * 100);
+  const f0 = RAMP_VH / rangeVh;
+  for (const B of bands) {
+    const f = Math.min(f0, (B.b - B.a) / 3);
+    const inO = B.first ? 1 : smoothstep(p, B.a, B.a + f);
+    const outO = B.last ? 0 : smoothstep(p, B.b - f, B.b);
+    const op = inO * (1 - outO);
+    let k = clamp((p - B.a) / (B.ramp || Math.min(0.025, (B.b - B.a) * 0.35)), 0, 1);
+    if (B.first) k = Math.max(k, loadK);
+    if (Math.abs(op - B.op) > 0.004 || (op === 0) !== (B.op === 0) || (op === 1 && B.op !== 1)) {
+      B.op = op; B.el.style.opacity = op.toFixed(3);
+      const vis = op > 0.001;
+      if (vis !== B.vis) { B.vis = vis; B.el.style.visibility = vis ? 'visible' : 'hidden'; }
+      const on = op > 0.5;
+      if (on !== B.on) { B.on = on; B.el.classList.toggle('on', on); }
+    }
+    if (Math.abs(k - B.k) > 0.008 || (k === 1 && B.k !== 1) || (k === 0 && B.k !== 0)) {
+      B.k = k; B.el.style.setProperty('--k', k.toFixed(3));
+    }
+  }
+  const cueGone = p > 0.04;
+  if (cueGone !== cue._gone) { cue._gone = cueGone; cue.classList.toggle('gone', cueGone); }
+  if (videoFailed) {
+    const pe = smoothstep(p, 0.45, 0.72);
+    if (Math.abs(pe - lastPe) > 0.01 || (pe === 1 && lastPe !== 1) || (pe === 0 && lastPe !== 0)) { lastPe = pe; posterEnd.style.setProperty('--pe', pe.toFixed(3)); }
+  }
+}
+
+/* gated seeks, deadlock safe */
+let seekBusy = false, pendingTime = null;
+function requestSeek(t) {
+  if (!video.duration || !isFinite(video.duration)) return;
+  t = clamp(t, 0, video.duration - 0.04);
+  if (seekBusy) { pendingTime = t; return; }
+  if (Math.abs(video.currentTime - t) < 0.001) return;
+  seekBusy = true;
+  video.currentTime = t;
+}
+video.addEventListener('seeked', () => {
+  seekBusy = false;
+  if (pendingTime !== null) { const t = pendingTime; pendingTime = null; requestSeek(t); }
+});
+video.addEventListener('error', () => { seekBusy = false; pendingTime = null; failVideo(); });
+
+function tick(now) {
+  const dt = Math.min(100, now - (lastTick || now));
+  lastTick = now;
+  const k = 0.14;
+  shown += (target - shown) * (1 - Math.pow(1 - k, dt / 16.667));
+  let busy = false;
+  if (Math.abs(target - shown) < 0.0005) shown = target; else busy = true;
+  if (loadK < 1) {
+    loadK = clamp((now - loadStart) / 1300, 0, 1);
+    loadK = 1 - Math.pow(1 - loadK, 3);
+    busy = busy || loadK < 1;
+  }
+  if (video.duration) requestSeek(shown * video.duration);
+  updateCaptions(shown);
+  if (busy && scrubOn && heroOnScreen) rafId = requestAnimationFrame(tick);
+  else { rafId = null; lastTick = 0; }
+}
+function kick() { if (rafId === null && scrubOn && heroOnScreen) rafId = requestAnimationFrame(tick); }
+function onScroll() { target = heroProgress(); kick(); }
+
+new IntersectionObserver(es => { heroOnScreen = es[0].isIntersecting; if (heroOnScreen) onScroll(); }, { rootMargin: '10% 0px' }).observe(hero);
+
+/* poster first, then the blob */
+let heroInit = false, started = false;
+function initHeroOnce() {
+  if (heroInit) return; heroInit = true;
+  posterLayer.style.backgroundImage = `url('${POSTER_URL}')`;
+  const img = new Image();
+  img.onload = startBlobFetch; img.onerror = startBlobFetch;
+  img.src = POSTER_URL;
+  setTimeout(startBlobFetch, 4000);
+}
+function startBlobFetch() { if (started) return; started = true; loadHeroBlob().catch(failVideo); }
+async function loadHeroBlob() {
+  const ctrl = new AbortController();
+  let watchdog = setTimeout(() => ctrl.abort(), 20000);
+  const res = await fetch(VIDEO_URL, { priority: 'low', signal: ctrl.signal });
+  if (!res.ok || !res.body) throw new Error('video ' + res.status);
+  const total = Number(res.headers.get('Content-Length')) || VIDEO_BYTES;
+  const reader = res.body.getReader();
+  const chunks = []; let got = 0, lastRing = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    clearTimeout(watchdog); watchdog = setTimeout(() => ctrl.abort(), 20000);
+    chunks.push(value); got += value.length;
+    const frac = Math.min(1, got / total), now = performance.now();
+    if (now - lastRing > 100 || frac === 1) { lastRing = now; ring.style.setProperty('--ld', Math.round(126 * (1 - frac))); }
+  }
+  clearTimeout(watchdog);
+  ring.style.setProperty('--ld', 0);
+  video.src = URL.createObjectURL(new Blob(chunks, { type: 'video/mp4' }));
+  video.load();
+  video.addEventListener('loadeddata', () => {
+    seekBusy = false;
+    requestSeek(shown * video.duration);
+    stage.classList.add('video-ready');
+    cue.classList.add('ready');
+  }, { once: true });
+}
+function failVideo() {
+  if (videoFailed) return;
+  videoFailed = true;
+  posterEnd.style.backgroundImage = "url('assets/hero-ending.jpg')";
+  stage.classList.add('video-failed');
+  cue.classList.add('ready');
+  updateCaptions(shown);
+}
+
+/* the five gates: must match the CSS media query exactly */
+const GATES = [
+  '(max-width: 720px)',
+  '(orientation: portrait) and (max-width: 1024px)',
+  '(orientation: portrait) and (pointer: coarse)',
+  '(orientation: landscape) and (pointer: coarse) and (max-height: 560px)',
+  '(prefers-reduced-motion: reduce)'
+];
+function enableScrub() {
+  if (scrubOn) return; scrubOn = true;
+  initHeroOnce();
+  addEventListener('scroll', onScroll, { passive: true });
+  bands.forEach(b => { b.op = -1; b.k = -1; b.vis = null; b.on = null; });
+  target = shown = heroProgress();
+  if (!loadStart) loadStart = performance.now();
+  updateCaptions(shown);
+  onScroll();
+}
+function disableScrub() {
+  if (!scrubOn) return; scrubOn = false;
+  removeEventListener('scroll', onScroll);
+  if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; lastTick = 0; }
+  bands.forEach(b => { b.el.style.removeProperty('opacity'); b.el.style.removeProperty('visibility'); b.el.style.removeProperty('--k'); b.el.classList.remove('on'); b.op = b.k = -1; b.vis = b.on = null; });
+}
+function applyHeroMode() { if (GATES.some(q => matchMedia(q).matches)) disableScrub(); else enableScrub(); }
+const MQLS = GATES.map(q => matchMedia(q));
+MQLS.forEach(m => m.addEventListener('change', applyHeroMode));
+
+/* ---------------- page: nav state + pour line ---------------- */
+const pourLine = $('.pour-line');
+let pageRaf = null, lastSolid = null, lastPP = -1, lastLineOn = null;
+function pageFrame() {
+  pageRaf = null;
+  const heroEnd = hero.offsetTop + hero.offsetHeight - innerHeight;
+  const solid = scrollY > Math.max(40, heroEnd - innerHeight * 0.4) || !scrubOn && scrollY > innerHeight * 0.6;
+  if (solid !== lastSolid) { lastSolid = solid; nav.classList.toggle('solid', solid); }
+  const docEnd = document.documentElement.scrollHeight - innerHeight;
+  const start = hero.offsetTop + hero.offsetHeight - innerHeight * 0.5;
+  const pp = clamp((scrollY - start) / Math.max(1, docEnd - start), 0, 1);
+  const on = pp > 0.001;
+  if (on !== lastLineOn) { lastLineOn = on; pourLine.classList.toggle('on', on); }
+  if (Math.abs(pp - lastPP) > 0.002) { lastPP = pp; pourLine.style.setProperty('--pp', pp.toFixed(4)); }
+}
+addEventListener('scroll', () => { if (pageRaf === null) pageRaf = requestAnimationFrame(pageFrame); }, { passive: true });
+addEventListener('resize', () => { if (pageRaf === null) pageRaf = requestAnimationFrame(pageFrame); onScroll(); });
+
+/* ---------------- entrances ---------------- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  const el = e.target;
+  el.classList.add('in');
+  io.unobserve(el);
+  setTimeout(() => el.classList.add('done'), 2600);
+  if (el.id === 'stats') runCounters();
+}), { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+$$('.rv, .divider, .board').forEach(el => io.observe(el));
+
+/* living elements run only on screen */
+const liveIO = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('live', e.isIntersecting)));
+$$('.story, .board, .tile, .branch').forEach(el => liveIO.observe(el));
+document.addEventListener('visibilitychange', () => document.body.classList.toggle('paused', document.hidden));
+
+/* counters */
+let countersRan = false;
+function runCounters() {
+  if (countersRan) return; countersRan = true;
+  const els = $$('#stats [data-count]');
+  if (RM.matches) { els.forEach(el => el.textContent = el.dataset.count); return; }
+  const t0 = performance.now();
+  const last = els.map(() => '');
+  els.forEach(el => el.textContent = '0');
+  (function step(now) {
+    const t = clamp((now - t0) / 1400, 0, 1), e = 1 - Math.pow(1 - t, 3);
+    els.forEach((el, i) => { const s = String(Math.round(e * +el.dataset.count)); if (s !== last[i]) { last[i] = s; el.textContent = s; } });
+    if (t < 1) requestAnimationFrame(step);
+  })(t0);
+}
+
+/* ---------------- the pour (press and hold) ---------------- */
+const story = $('#story'), holdBtn = $('#holdBtn'), pourSvg = $('#pourSvg');
+let hp = 0, holding = false, poured = false, holdRaf = null, holdLast = 0, lastS = -1, lastL = -1, lastH = -1;
+function renderPour() {
+  const s = clamp(hp / 0.3, 0, 1), l = clamp((hp - 0.18) / 0.82, 0, 1);
+  if (Math.abs(s - lastS) > 0.003) { lastS = s; pourSvg.style.setProperty('--s', s.toFixed(3)); }
+  if (Math.abs(l - lastL) > 0.003) { lastL = l; pourSvg.style.setProperty('--lvl', l.toFixed(3)); }
+  if (Math.abs(hp - lastH) > 0.003) { lastH = hp; holdBtn.style.setProperty('--hp', hp.toFixed(3)); }
+}
+function completePour() {
+  poured = true; hp = 1; renderPour();
+  story.classList.add('poured');
+  holdBtn.setAttribute('aria-pressed', 'true');
+}
+function holdTick(now) {
+  const dt = Math.min(100, now - (holdLast || now)); holdLast = now;
+  if (holding) hp = Math.min(1, hp + dt / 1900);
+  else hp = Math.max(0, hp - dt / 1100 * (0.35 + hp));
+  renderPour();
+  if (hp >= 1) { holdRaf = null; holdLast = 0; completePour(); return; }
+  if (holding || hp > 0) holdRaf = requestAnimationFrame(holdTick);
+  else { holdRaf = null; holdLast = 0; }
+}
+function holdStart(e) {
+  if (poured) return;
+  if (e && e.type === 'pointerdown') e.preventDefault();
+  if (RM.matches) { completePour(); return; }
+  holding = true;
+  if (holdRaf === null) holdRaf = requestAnimationFrame(holdTick);
+}
+function holdEnd() { holding = false; }
+holdBtn.addEventListener('pointerdown', holdStart);
+// the release is heard anywhere on the page, so dragging off the button still ends the pour
+['pointerup', 'pointercancel'].forEach(t => addEventListener(t, holdEnd));
+addEventListener('blur', holdEnd);
+holdBtn.addEventListener('keydown', e => { if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) { e.preventDefault(); holdStart(); } });
+holdBtn.addEventListener('keyup', e => { if (e.key === ' ' || e.key === 'Enter') holdEnd(); });
+holdBtn.addEventListener('contextmenu', e => e.preventDefault());
+
+/* ---------------- faq ---------------- */
+$$('.qa button').forEach(b => b.addEventListener('click', () => {
+  const qa = b.closest('.qa'), open = !qa.classList.contains('open');
+  qa.classList.toggle('open', open);
+  b.setAttribute('aria-expanded', String(open));
+}));
+
+/* ---------------- join dialog (demo: nothing is sent) ---------------- */
+const dlg = $('#applyDlg'), form = $('#applyForm');
+$('#joinBtn').addEventListener('click', () => { dlg.classList.remove('sent'); dlg.showModal(); });
+$('#dlgClose').addEventListener('click', () => dlg.close());
+$('#okClose').addEventListener('click', () => dlg.close());
+dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  let bad = null;
+  ['name', 'phone'].forEach(n => { const el = form.elements[n]; const ok = el.value.trim().length > 1; el.setAttribute('aria-invalid', String(!ok)); if (!ok && !bad) bad = el; });
+  if (bad) { bad.focus(); return; }
+  $('#okMsg').textContent = T[doc.lang].ok(form.elements.name.value.trim());
+  dlg.classList.add('sent');
+  form.reset();
+  $('#okClose').focus();
+});
+
+/* ---------------- reduced motion, live in both directions ---------------- */
+function pinToFinalStates() {
+  $$('.rv, .divider, .board').forEach(el => el.classList.add('in', 'done'));
+  countersRan = false; runCounters();
+  if (!poured) completePour();
+}
+RM.addEventListener('change', e => { if (e.matches) pinToFinalStates(); else applyHeroMode(); });
+
+/* ---------------- boot ---------------- */
+let saved = null;
+try { saved = localStorage.getItem('spilver-lang'); } catch (e) {}
+setLang(saved === 'en' ? 'en' : 'ar', false);
+applyHeroMode();
+if (RM.matches) pinToFinalStates();
+pageFrame();
+})();
+</script>
+</body>
+</html>

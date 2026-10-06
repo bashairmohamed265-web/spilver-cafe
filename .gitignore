@@ -1,0 +1,11 @@
+# Only the website ships to GitHub. Everything else in this folder stays local:
+# the 10k-websites skill, the raw generations in review/, the data .docx and the editor settings.
+/*
+!/.gitignore
+!/README.md
+!/frontend/
+
+# frontend extras that never belong in the repo
+/frontend/node_modules/
+.DS_Store
+Thumbs.db

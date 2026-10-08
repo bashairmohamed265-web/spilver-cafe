@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>إدارة المنيو | سبيلفر</title>
+<meta name="theme-color" content="#251A14">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23251A14'/%3E%3Cpath d='M32 10c7 11 13 18 13 26a13 13 0 0 1-26 0c0-8 6-15 13-26z' fill='%23CDD2D9'/%3E%3Cpath d='M26 38a6 6 0 0 0 6 6' stroke='%23251A14' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#251A14;--canvas-deep:#1C140F;--panel:#30231B;--panel-2:#3A2B21;
+  --accent:#CDD2D9;--accent-hover:#E9ECF0;--accent-muted:rgba(205,210,217,.16);
+  --text-primary:#F3EADF;--text-secondary:#C4B3A1;--on-accent:#231811;
+  --line:rgba(205,210,217,.14);--line-strong:rgba(205,210,217,.42);
+  --ok:#9CC9A2;--danger:#E8A08F;--danger-bg:rgba(232,160,143,.12);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --f-body:'IBM Plex Sans Arabic',system-ui,sans-serif;--f-display:'Reem Kufi','IBM Plex Sans Arabic',sans-serif;--f-mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse 80% 50% at 85% -10%,rgba(201,149,94,.10),transparent 60%),var(--canvas);color:var(--text-primary);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+.wrap{width:min(960px,100% - 32px);margin-inline:auto}
+
+header{position:sticky;top:0;z-index:20;background:rgba(37,26,20,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;gap:14px;min-height:64px}
+header img{height:26px;width:auto}
+header .title{font-family:var(--f-display);font-weight:500;font-size:1.1rem;margin-inline-end:auto;color:var(--text-secondary)}
+header a,header button{font-size:14px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:8px 18px;border-radius:999px;border:1px solid transparent;cursor:pointer;text-decoration:none;font-weight:500;color:var(--text-primary);transition:background-color .3s,border-color .3s,opacity .3s,transform .4s var(--ease)}
+.btn:disabled{opacity:.38;cursor:not-allowed}
+.btn-accent{background:var(--accent);color:var(--on-accent)}
+.btn-accent:not(:disabled):hover{background:var(--accent-hover)}
+.btn-ghost{border-color:var(--line-strong);background:transparent}
+.btn-ghost:not(:disabled):hover{border-color:var(--accent);background:var(--accent-muted)}
+.btn-danger{border-color:rgba(232,160,143,.45);color:var(--danger);background:transparent}
+.btn-danger:not(:disabled):hover{background:var(--danger-bg)}
+.btn-sm{min-height:36px;padding:6px 14px;font-size:14px}
+
+main{padding-block:32px 80px}
+h1{font-family:var(--f-display);font-weight:500;font-size:clamp(1.7rem,4vw,2.3rem);margin:0 0 6px}
+.muted{color:var(--text-secondary)}
+.card{background:linear-gradient(160deg,var(--panel),rgba(48,35,27,.6));border:1px solid var(--line);border-radius:20px;padding:22px}
+
+/* login and messages */
+.center{min-height:calc(100vh - 64px);display:grid;place-items:center;padding:24px 0}
+.auth{width:min(420px,100%)}
+.auth h1{text-align:center}
+.auth p.muted{text-align:center;margin:0 0 22px}
+label{display:grid;gap:6px;font-size:14px;color:var(--text-secondary)}
+input,select{width:100%;min-height:44px;background:var(--canvas);border:1px solid rgba(205,210,217,.4);border-radius:12px;padding:9px 12px;font-size:16px;transition:border-color .25s,box-shadow .25s}
+input:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-muted)}
+input[dir=ltr]{direction:ltr;text-align:left}
+input[inputmode=decimal]{font-family:var(--f-mono)}
+input[aria-invalid=true]{border-color:var(--danger)}
+.stack{display:grid;gap:14px}
+.err{color:var(--danger);font-size:14px;min-height:1.4em;margin:0}
+
+/* add form */
+.add{margin-bottom:34px}
+.add h2,.cat h2{font-family:var(--f-display);font-weight:500;font-size:1.3rem;margin:0}
+.add-grid{display:grid;grid-template-columns:1.1fr 1.4fr 1.4fr .9fr auto;gap:12px;align-items:end;margin-top:16px}
+.price-field{position:relative}
+.price-field input{padding-left:30px}
+.price-field::before{content:"$";position:absolute;left:12px;bottom:11px;font-family:var(--f-mono);color:var(--text-secondary);pointer-events:none}
+
+/* categories */
+.cat{margin-bottom:30px}
+.cat-head{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}
+.cat-head .n{font-family:var(--f-mono);font-size:13px;color:var(--text-secondary)}
+.rows{display:grid;gap:10px}
+.row{display:grid;grid-template-columns:1.4fr 1.4fr .9fr auto auto auto;gap:10px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:16px;background:rgba(48,35,27,.55);transition:border-color .3s,opacity .3s}
+.row .actions{display:contents}
+.row.dirty{border-color:var(--accent)}
+.row.off{opacity:.55}
+.row.busy{pointer-events:none;opacity:.6}
+.empty{padding:14px;border:1px dashed var(--line);border-radius:16px;color:var(--text-secondary);font-size:14px;text-align:center}
+
+/* the show / hide switch */
+.switch{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:var(--text-secondary);white-space:nowrap;min-height:40px}
+.switch input{position:absolute;opacity:0;width:1px;height:1px}
+.switch .track{position:relative;width:40px;height:22px;border-radius:999px;background:rgba(205,210,217,.22);transition:background-color .3s}
+.switch .track::after{content:"";position:absolute;top:3px;right:3px;width:16px;height:16px;border-radius:50%;background:var(--text-primary);transition:transform .35s var(--ease)}
+.switch input:checked + .track{background:var(--ok)}
+.switch input:checked + .track::after{transform:translateX(-18px)}
+.switch input:focus-visible + .track{outline:2px solid var(--accent);outline-offset:2px}
+
+/* toast and confirm */
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;z-index:50;background:var(--panel-2);border:1px solid var(--line-strong);border-radius:999px;padding:10px 20px;font-size:15px;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:opacity .35s,transform .45s var(--ease);pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast.bad{border-color:rgba(232,160,143,.6);color:var(--danger)}
+dialog{border:1px solid var(--line-strong);border-radius:20px;background:var(--panel);color:var(--text-primary);padding:24px;width:min(400px,100% - 32px)}
+dialog::backdrop{background:rgba(14,9,6,.7);backdrop-filter:blur(4px)}
+dialog h2{font-family:var(--f-display);font-weight:500;font-size:1.3rem;margin:0 0 8px}
+dialog p{margin:0 0 20px;color:var(--text-secondary)}
+dialog .actions{display:flex;gap:10px;justify-content:flex-start}
+
+@media (max-width:760px){
+  .add-grid{grid-template-columns:1fr 1fr}
+  .add-grid .full{grid-column:1/-1}
+  .row{grid-template-columns:1fr 1fr;padding:14px}
+  .row .name-ar,.row .name-en{grid-column:1/-1}
+  .row .actions{grid-column:1/-1;display:flex;gap:10px}
+  .row .actions .btn{flex:1}
+  header .title{display:none}
+  header .wrap{gap:10px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a href="/" aria-label="عرض الموقع"><img src="assets/logo.webp" alt="Spilver" width="720" height="158"></a>
+    <span class="title">إدارة المنيو</span>
+    <a class="btn btn-ghost btn-sm" href="/" target="_blank" rel="noopener">عرض الموقع</a>
+    <button class="btn btn-ghost btn-sm" id="logoutBtn" type="button" hidden>تسجيل خروج</button>
+  </div>
+</header>
+
+<main>
+  <!-- not linked to the database yet -->
+  <section class="wrap center" id="vSetup" hidden>
+    <div class="card auth">
+      <h1>الصفحة مو مربوطة للحين</h1>
+      <p class="muted">لازم نعبّي رابط قاعدة البيانات والمفتاح العام في ملف <code>config.js</code>. التفاصيل في <code>bachend/README.md</code>.</p>
+    </div>
+  </section>
+
+  <!-- sign in -->
+  <section class="wrap center" id="vLogin" hidden>
+    <form class="card auth stack" id="loginForm" novalidate>
+      <div>
+        <h1>أهلًا فيك</h1>
+        <p class="muted">سجّلي دخولك عشان تعدّلين المنيو.</p>
+      </div>
+      <label>الإيميل<input type="email" name="email" autocomplete="username" dir="ltr" required></label>
+      <label>كلمة السر<input type="password" name="password" autocomplete="current-password" dir="ltr" required></label>
+      <p class="err" id="loginErr" role="alert"></p>
+      <button class="btn btn-accent" type="submit">دخول</button>
+    </form>
+  </section>
+
+  <!-- signed in, but not an admin -->
+  <section class="wrap center" id="vDenied" hidden>
+    <div class="card auth">
+      <h1>ما عندك صلاحية</h1>
+      <p class="muted">الحساب <bdi id="deniedEmail"></bdi> مسجل، بس مو مسؤول عن المنيو. لو هذا حسابك، شغّلي <code>add-admin.sql</code> بإيميله.</p>
+    </div>
+  </section>
+
+  <!-- the menu editor -->
+  <section class="wrap" id="vPanel" hidden>
+    <h1>المنيو</h1>
+    <p class="muted" style="margin:0 0 26px">أي تعديل تحفظينه يطلع في الموقع على طول.</p>
+
+    <form class="card add" id="addForm" novalidate>
+      <h2>أضيفي صنف جديد</h2>
+      <div class="add-grid">
+        <label class="full">القسم<select name="category" id="addCat"></select></label>
+        <label>الاسم بالعربي<input name="name_ar" maxlength="60" required placeholder="مثال: لاتيه بالهيل"></label>
+        <label>الاسم بالإنجليزي<input name="name_en" maxlength="60" dir="ltr" required placeholder="e.g. Cardamom Latte"></label>
+        <label class="price-field">السعر<input name="price" inputmode="decimal" dir="ltr" autocomplete="off" maxlength="7" required placeholder="5.00"></label>
+        <button class="btn btn-accent full" type="submit">أضف للمنيو</button>
+      </div>
+      <p class="err" id="addErr" role="alert"></p>
+    </form>
+
+    <div id="cats"></div>
+  </section>
+</main>
+
+<dialog id="confirmDlg" aria-labelledby="confirmTitle">
+  <h2 id="confirmTitle">حذف الصنف؟</h2>
+  <p id="confirmText"></p>
+  <div class="actions">
+    <button class="btn btn-danger" type="button" id="confirmYes">احذفه</button>
+    <button class="btn btn-ghost" type="button" id="confirmNo">لا، رجوع</button>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+(() => {
+'use strict';
+const $ = (s, r = document) => r.querySelector(s);
+const DB = window.SPILVER_DB || {};
+const CATS = [['iced', 'باردة'], ['hot', 'ساخنة'], ['tea', 'شاي وأكثر'], ['bakery', 'مخبوزات']];
+const VIEWS = ['vSetup', 'vLogin', 'vDenied', 'vPanel'];
+let client = null, items = [];
+
+function show(id) { VIEWS.forEach(v => { $('#' + v).hidden = v !== id; }); $('#logoutBtn').hidden = !(id === 'vPanel' || id === 'vDenied'); }
+
+let toastTimer = 0;
+function toast(msg, bad = false) {
+  const t = $('#toast');
+  t.textContent = msg; t.classList.toggle('bad', bad); t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), bad ? 5000 : 2600);
+}
+function explain(error) {
+  const m = (error && (error.message || String(error))) || '';
+  if (/invalid login credentials/i.test(m)) return 'الإيميل أو كلمة السر غلط.';
+  if (/email not confirmed/i.test(m)) return 'الحساب مو مفعّل. فعّليه من لوحة Supabase.';
+  if (/failed to fetch|network/i.test(m)) return 'ما قدرنا نوصل لقاعدة البيانات. تأكدي من النت وجربي مرة ثانية.';
+  if (/row-level security|permission denied/i.test(m)) return 'ما عندك صلاحية لهالتعديل.';
+  if (/duplicate key/i.test(m)) return 'فيه صنف بنفس المعرّف موجود.';
+  return 'صار خطأ: ' + m;
+}
+
+/* prices typed on an Arabic keyboard arrive as ٥٫٥٠; read them as 5.50 */
+function parsePrice(text) {
+  const latin = String(text).trim()
+    .replace(/[٠-٩]/g, d => String(d.charCodeAt(0) - 0x0660))
+    .replace(/[۰-۹]/g, d => String(d.charCodeAt(0) - 0x06F0))
+    .replace(/[٫,]/g, '.').replace(/^\$/, '').trim();
+  return latin === '' ? NaN : Number(latin);
+}
+
+/* the same rules the database enforces, checked here first so the message is friendly */
+function readItem(fields) {
+  const name_ar = fields.name_ar.value.trim(), name_en = fields.name_en.value.trim();
+  const raw = fields.price.value.trim(), price = parsePrice(raw);
+  const bad = [];
+  if (!name_ar || name_ar.length > 60) bad.push([fields.name_ar, 'اكتبي الاسم بالعربي (60 حرف بالكثير).']);
+  if (!name_en || name_en.length > 60) bad.push([fields.name_en, 'اكتبي الاسم بالإنجليزي (60 حرف بالكثير).']);
+  if (raw === '' || !isFinite(price) || price < 0 || price >= 1000 || Math.abs(Math.round(price * 100) - price * 100) > 1e-6) bad.push([fields.price, 'السعر لازم يكون رقم بين 0 و 999.99، وبخانتين عشريتين بالكثير.']);
+  [fields.name_ar, fields.name_en, fields.price].forEach(f => f.setAttribute('aria-invalid', String(bad.some(b => b[0] === f))));
+  if (bad.length) { bad[0][0].focus(); return { error: bad[0][1] }; }
+  return { value: { name_ar, name_en, price: Math.round(price * 100) / 100 } };
+}
+
+/* ---------- rendering ---------- */
+function rowEl(item) {
+  const row = document.createElement('div');
+  row.className = 'row' + (item.is_visible ? '' : ' off');
+  row.dataset.id = item.id;
+  const field = (cls, name, value, attrs = {}) => {
+    const input = document.createElement('input');
+    input.name = name; input.value = value; input.className = cls;
+    Object.entries(attrs).forEach(([k, v]) => input.setAttribute(k, v));
+    return input;
+  };
+  const ar = field('name-ar', 'name_ar', item.name_ar, { maxlength: 60, 'aria-label': 'الاسم بالعربي' });
+  const en = field('name-en', 'name_en', item.name_en, { maxlength: 60, dir: 'ltr', 'aria-label': 'الاسم بالإنجليزي' });
+  // a text box, not type=number: Chrome would localize the digits to ٤٫٠٠ on an Arabic page
+  const pr = field('price-in', 'price', Number(item.price).toFixed(2), { inputmode: 'decimal', dir: 'ltr', autocomplete: 'off', maxlength: 7, 'aria-label': 'السعر بالدولار' });
+  const prWrap = document.createElement('label'); prWrap.className = 'price-field'; prWrap.append(pr);
+
+  const sw = document.createElement('label'); sw.className = 'switch';
+  const cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = item.is_visible;
+  const track = document.createElement('span'); track.className = 'track';
+  const swText = document.createElement('span'); swText.textContent = item.is_visible ? 'ظاهر' : 'مخفي';
+  sw.append(cb, track, swText);
+
+  const actions = document.createElement('div'); actions.className = 'actions';
+  const save = document.createElement('button'); save.type = 'button'; save.className = 'btn btn-accent btn-sm'; save.textContent = 'حفظ'; save.disabled = true;
+  const del = document.createElement('button'); del.type = 'button'; del.className = 'btn btn-danger btn-sm'; del.textContent = 'حذف';
+  actions.append(save, del);
+
+  const fields = { name_ar: ar, name_en: en, price: pr };
+  const changed = () => ar.value.trim() !== item.name_ar || en.value.trim() !== item.name_en || parsePrice(pr.value) !== Number(item.price);
+  [ar, en, pr].forEach(f => f.addEventListener('input', () => { const d = changed(); save.disabled = !d; row.classList.toggle('dirty', d); }));
+  [ar, en, pr].forEach(f => f.addEventListener('keydown', e => { if (e.key === 'Enter' && !save.disabled) save.click(); }));
+
+  save.addEventListener('click', async () => {
+    const r = readItem(fields);
+    if (r.error) { toast(r.error, true); return; }
+    row.classList.add('busy');
+    const { data, error } = await client.from('menu_items').update(r.value).eq('id', item.id).select().single();
+    row.classList.remove('busy');
+    if (error) { toast(explain(error), true); return; }
+    Object.assign(item, data);
+    save.disabled = true; row.classList.remove('dirty');
+    pr.value = Number(item.price).toFixed(2);
+    toast('انحفظ ✓ «' + item.name_ar + '» الحين بسعر $' + Number(item.price).toFixed(2));
+  });
+
+  cb.addEventListener('change', async () => {
+    const want = cb.checked;
+    row.classList.add('busy');
+    const { error } = await client.from('menu_items').update({ is_visible: want }).eq('id', item.id);
+    row.classList.remove('busy');
+    if (error) { cb.checked = !want; toast(explain(error), true); return; }
+    item.is_visible = want;
+    row.classList.toggle('off', !want);
+    swText.textContent = want ? 'ظاهر' : 'مخفي';
+    toast(want ? '«' + item.name_ar + '» رجع يظهر في المنيو' : '«' + item.name_ar + '» مخفي من المنيو');
+  });
+
+  del.addEventListener('click', async () => {
+    if (!(await confirmDelete(item.name_ar))) return;
+    row.classList.add('busy');
+    const { error } = await client.from('menu_items').delete().eq('id', item.id);
+    if (error) { row.classList.remove('busy'); toast(explain(error), true); return; }
+    items = items.filter(i => i.id !== item.id);
+    render();
+    toast('انحذف «' + item.name_ar + '»');
+  });
+
+  row.append(ar, en, prWrap, sw, actions);
+  return row;
+}
+
+function render() {
+  const host = $('#cats');
+  host.replaceChildren(...CATS.map(([key, label]) => {
+    const list = items.filter(i => i.category === key);
+    const sec = document.createElement('section'); sec.className = 'cat';
+    const head = document.createElement('div'); head.className = 'cat-head';
+    const h = document.createElement('h2'); h.textContent = label;
+    const n = document.createElement('span'); n.className = 'n'; n.textContent = list.length + ' صنف';
+    head.append(h, n);
+    const rows = document.createElement('div'); rows.className = 'rows';
+    if (list.length) rows.append(...list.map(rowEl));
+    else { const e = document.createElement('div'); e.className = 'empty'; e.textContent = 'ما فيه أصناف في هالقسم للحين.'; rows.append(e); }
+    sec.append(head, rows);
+    return sec;
+  }));
+}
+
+function confirmDelete(name) {
+  const dlg = $('#confirmDlg');
+  $('#confirmText').textContent = 'متأكدة تبين تحذفين «' + name + '» من المنيو؟ الحذف نهائي. لو بس خلص مؤقتًا، الأفضل تخفينه.';
+  return new Promise(resolve => {
+    const done = v => { dlg.close(); $('#confirmYes').onclick = $('#confirmNo').onclick = null; dlg.onclose = null; resolve(v); };
+    $('#confirmYes').onclick = () => done(true);
+    $('#confirmNo').onclick = () => done(false);
+    dlg.onclose = () => resolve(false);
+    dlg.showModal();
+    $('#confirmNo').focus();
+  });
+}
+
+/* ---------- data ---------- */
+async function loadItems() {
+  const { data, error } = await client.from('menu_items')
+    .select('id,slug,category,name_ar,name_en,price,is_visible,sort_order,created_at')
+    .order('sort_order', { ascending: true }).order('created_at', { ascending: true });
+  if (error) { toast(explain(error), true); return; }
+  items = data;
+  render();
+}
+
+async function enter() {
+  const { data: isAdmin, error } = await client.rpc('is_admin');
+  if (error) { toast(explain(error), true); show('vLogin'); return; }
+  if (!isAdmin) {
+    const { data: { user } } = await client.auth.getUser();
+    $('#deniedEmail').textContent = user ? user.email : '';
+    show('vDenied');
+    return;
+  }
+  show('vPanel');
+  await loadItems();
+}
+
+/* ---------- wiring ---------- */
+$('#addCat').append(...CATS.map(([key, label]) => new Option(label, key)));
+
+$('#loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const f = e.currentTarget, btn = f.querySelector('button');
+  $('#loginErr').textContent = '';
+  btn.disabled = true;
+  const { error } = await client.auth.signInWithPassword({ email: f.email.value.trim(), password: f.password.value });
+  btn.disabled = false;
+  if (error) { $('#loginErr').textContent = explain(error); return; }
+  f.password.value = '';
+  await enter();
+});
+
+$('#addForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const f = e.currentTarget, btn = f.querySelector('button[type=submit]');
+  $('#addErr').textContent = '';
+  const r = readItem({ name_ar: f.name_ar, name_en: f.name_en, price: f.price });
+  if (r.error) { $('#addErr').textContent = r.error; return; }
+  const category = f.category.value;
+  const sort_order = Math.max(0, ...items.filter(i => i.category === category).map(i => i.sort_order)) + 1;
+  btn.disabled = true;
+  const { data, error } = await client.from('menu_items').insert({ ...r.value, category, sort_order }).select().single();
+  btn.disabled = false;
+  if (error) { $('#addErr').textContent = explain(error); return; }
+  items.push(data);
+  render();
+  f.name_ar.value = f.name_en.value = f.price.value = '';
+  toast('انضاف «' + data.name_ar + '» لقسم ' + CATS.find(c => c[0] === category)[1] + ' ✓');
+});
+
+$('#logoutBtn').addEventListener('click', async () => {
+  await client.auth.signOut();
+  items = []; $('#cats').replaceChildren();
+  show('vLogin');
+});
+
+(async function init() {
+  if (!DB.url || !DB.anonKey || !window.supabase) { show('vSetup'); return; }
+  client = window.supabase.createClient(DB.url, DB.anonKey);
+  const { data: { session } } = await client.auth.getSession();
+  if (session) await enter(); else show('vLogin');
+})();
+})();
+</script>
+</body>
+</html>

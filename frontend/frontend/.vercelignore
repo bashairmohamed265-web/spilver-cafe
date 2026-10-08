@@ -1,0 +1,3 @@
+# Local preview only; Vercel serves this folder as a plain static site.
+dev-server.mjs
+package.json

@@ -31,9 +31,17 @@ async function handle(req, res) {
   if (!file.startsWith(ROOT.endsWith(sep) ? ROOT : ROOT + sep)) { res.writeHead(403).end('Forbidden'); return; }
 
   let info;
-  try { info = await stat(file); } catch { res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }).end('Not found: ' + path); return; }
+  try { info = await stat(file); }
+  catch {
+    // clean URLs, like Vercel: /admin serves admin.html
+    if (!extname(file)) { try { info = await stat(file + '.html'); return serve(req, res, file + '.html', info); } catch {} }
+    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }).end('Not found: ' + path); return;
+  }
   if (info.isDirectory()) { res.writeHead(302, { Location: path + '/' }).end(); return; }
+  return serve(req, res, file, info);
+}
 
+async function serve(req, res, file, info) {
   const headers = { 'Content-Type': TYPES[extname(file).toLowerCase()] || 'application/octet-stream', 'Cache-Control': 'no-store', 'Accept-Ranges': 'bytes' };
   const range = req.headers.range && /bytes=(\d*)-(\d*)/.exec(req.headers.range);
   if (range) {
